@@ -9,36 +9,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.86" prefHeight="400.0" prefWidth="465.0" style="-fx-background-color: #505050;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.86" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #505050;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="469.0">
+      <AnchorPane prefHeight="400.0" prefWidth="599.0">
          <children>
-            <ImageView fitHeight="111.0" fitWidth="110.0" layoutX="178.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="111.0" fitWidth="110.0" layoutX="245.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@locklogo.png" />
                </image>
             </ImageView>
-            <TextField fx:id="tf_username" layoutX="64.0" layoutY="160.0" prefHeight="40.0" prefWidth="338.0" promptText="Username" style="-fx-alignment: center;">
+            <TextField fx:id="tf_username" layoutX="131.0" layoutY="160.0" prefHeight="40.0" prefWidth="338.0" promptText="Username" style="-fx-alignment: center;">
                <font>
                   <Font size="22.0" />
                </font>
             </TextField>
-            <TextField fx:id="tf_password" layoutX="64.0" layoutY="219.0" prefHeight="40.0" prefWidth="338.0" promptText="Password" style="-fx-alignment: center;">
+            <TextField fx:id="tf_password" layoutX="131.0" layoutY="215.0" prefHeight="40.0" prefWidth="338.0" promptText="Password" style="-fx-alignment: center;">
                <font>
                   <Font size="22.0" />
                </font>
             </TextField>
-            <Button fx:id="button_login" layoutX="129.0" layoutY="277.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" style="-fx-background-color: #0000FF; -fx-cursor: hand; -fx-text-fill: #ffffff;" text="Login">
+            <Button fx:id="button_login" layoutX="196.0" layoutY="274.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" style="-fx-background-color: #0000FF; -fx-cursor: hand; -fx-text-fill: #ffffff;" text="Login">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Label layoutX="71.0" layoutY="335.0" text="Don't have an account?" textFill="WHITE">
+            <Label layoutX="86.0" layoutY="335.0" text="Don't have an account?" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="button_sign_up" layoutX="290.0" layoutY="329.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #DE3163; -fx-cursor: hand;" text="Sign Up" underline="true">
+            <Button fx:id="button_sign_up" layoutX="357.0" layoutY="329.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #DE3163; -fx-cursor: hand;" text="Sign Up" underline="true">
                <font>
                   <Font size="18.0" />
                </font>
