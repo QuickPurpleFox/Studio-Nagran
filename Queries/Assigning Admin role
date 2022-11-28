@@ -1,0 +1,1 @@
+UPDATE users SET Role = "Admin" WHERE User_ID LIKE 1; 

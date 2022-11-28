@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <name>Record_Studio0</name>
+    <table>
+        <database></database>
+        <name>Albums</name>
+        <ddl><![CDATA[CREATE TABLE Albums (Album_ID INTEGER PRIMARY KEY, A_Title TEXT, "Single(?)" INTEGER, Author_ID INTEGER REFERENCES Authors (Author_ID) ON DELETE SET NULL ON UPDATE CASCADE MATCH "FULL")]]></ddl>
+        <columns>
+            <column>
+                <name>Album_ID</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>A_Title</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>Single(?)</name>
+                <type>INTEGER</type>
+            </column>
+            <column>
+                <name>Author_ID</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES Authors (Author_ID) ON DELETE SET NULL ON UPDATE CASCADE MATCH &quot;FULL&quot;</definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <rows>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>Authors</name>
+        <ddl>CREATE TABLE Authors (Author_ID INTEGER PRIMARY KEY, Stage_name TEXT)</ddl>
+        <columns>
+            <column>
+                <name>Author_ID</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Stage_name</name>
+                <type>TEXT</type>
+            </column>
+        </columns>
+        <rows>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>Songs</name>
+        <ddl><![CDATA[CREATE TABLE Songs (Song_ID INTEGER PRIMARY KEY, S_Title TEXT, Duration TEXT, Album_ID INTEGER REFERENCES Albums (Album_ID) ON DELETE SET NULL ON UPDATE CASCADE MATCH "FULL", Coauthor_ID INTEGER REFERENCES Authors (Author_ID) ON DELETE SET NULL ON UPDATE CASCADE MATCH "FULL")]]></ddl>
+        <columns>
+            <column>
+                <name>Song_ID</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>S_Title</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>Duration</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>Album_ID</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES Albums (Album_ID) ON DELETE SET NULL ON UPDATE CASCADE MATCH &quot;FULL&quot;</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Coauthor_ID</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>FOREIGN KEY</type>
+                        <definition>REFERENCES Authors (Author_ID) ON DELETE SET NULL ON UPDATE CASCADE MATCH &quot;FULL&quot;</definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <rows>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>users</name>
+        <ddl><![CDATA[CREATE TABLE users (User_ID INTEGER PRIMARY KEY, Name TEXT, Surname TEXT, "e-mail" TEXT, Phone_number TEXT, username TEXT, Password TEXT UNIQUE ON CONFLICT REPLACE, Role TEXT)]]></ddl>
+        <columns>
+            <column>
+                <name>User_ID</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Name</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>Surname</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>e-mail</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>Phone_number</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>username</name>
+                <type>TEXT</type>
+            </column>
+            <column>
+                <name>Password</name>
+                <type>TEXT</type>
+                <constraints>
+                    <constraint>
+                        <type>UNIQUE</type>
+                        <definition>UNIQUE ON CONFLICT REPLACE</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Role</name>
+                <type>TEXT</type>
+            </column>
+        </columns>
+        <rows>
+        </rows>
+    </table>
+</database>
