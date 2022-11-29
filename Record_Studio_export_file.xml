@@ -111,7 +111,7 @@
     <table>
         <database></database>
         <name>users</name>
-        <ddl><![CDATA[CREATE TABLE users (User_ID INTEGER PRIMARY KEY, Name TEXT, Surname TEXT, "e-mail" TEXT, Phone_number TEXT, username TEXT, Password TEXT UNIQUE ON CONFLICT REPLACE, Role TEXT)]]></ddl>
+        <ddl><![CDATA[CREATE TABLE users (User_ID INTEGER PRIMARY KEY, Name TEXT, Surname TEXT, "e-mail" TEXT, Phone_number TEXT, username TEXT UNIQUE ON CONFLICT REPLACE, Password TEXT, Role TEXT)]]></ddl>
         <columns>
             <column>
                 <name>User_ID</name>
