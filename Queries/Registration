@@ -1,2 +1,2 @@
-INSERT INTO users (username, password)
-VALUES ("","")
+INSERT INTO users (Name, Surname, e-mail, Phone_number, username, Password)
+VALUES ("","","","","","")
