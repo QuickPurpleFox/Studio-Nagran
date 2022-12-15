@@ -3,7 +3,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800"
+        Height="450"
         x:Class="Szprotify.MainWindow"
         Title="Szprotify">
-    Welcome to Avalonia!
+    <Grid RowDefinitions="Auto, *, Auto">
+        <!--Title bar-->
+        <Grid Grid.Row="0" Background="Orange" Height="50" ColumnDefinitions="Auto, *, Auto">
+            <Rectangle Grid.Column="0" Fill="Red" Width="50"></Rectangle>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
+                <Label FontWeight="Black">SZPROTIFY</Label>
+                <Label >RECORDING STUDIO</Label>
+            </StackPanel>
+            <Rectangle Grid.Column="2" Fill="Blue" Width="50"></Rectangle>
+        </Grid>
+        <!--Main page-->
+        <Grid Grid.Row="1" ColumnDefinitions="auto, *">
+            <!--Bar with buttons to create/add albums singels etc.-->
+            <Rectangle Grid.Column="0" Fill="Green" Width="250">
+
+            </Rectangle>
+            <!--Print Albums-->
+            <Rectangle Grid.Column="1" Fill="Purple">
+
+            </Rectangle>
+        </Grid>
+        <!--Footer-->
+        <Grid Grid.Row="2" Background="White" Height="50" ColumnDefinitions="Auto, *, Auto">
+                <Rectangle Grid.Column="0" Fill="Red" Width="50"></Rectangle>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
+                    <Label FontWeight="Black">Made with:</Label>
+                    <Label >.Net AvaloniaUI</Label>
+                </StackPanel>
+                <Rectangle Grid.Column="2" Fill="Green" Width="50"></Rectangle>
+        </Grid>
+    </Grid>
 </Window>
