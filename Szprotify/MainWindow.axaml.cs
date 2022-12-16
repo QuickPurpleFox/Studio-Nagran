@@ -11,5 +11,9 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-    
+    //Button to LogOut (close windows)
+    public void LogOut_Click(object sender, RoutedEventArgs e)
+    {
+        Close("Loggin out...");
+    }
 }
