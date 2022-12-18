@@ -20,9 +20,11 @@
         <!--Main page-->
         <Grid Grid.Row="1" ColumnDefinitions="auto, *">
             <!--Bar with buttons to create/add albums singels etc.-->
-            <Rectangle Grid.Column="0" Fill="Green" Width="250">
-
-            </Rectangle>
+            <Grid Grid.Column="0" Background="#1a1c28" Width="200">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button Grid.Row="0" Foreground="White" FontSize="20">Add album</Button>
+                </StackPanel>
+            </Grid>
             <!--Print Albums-->
             <Rectangle Grid.Column="1" Fill="Purple">
 
