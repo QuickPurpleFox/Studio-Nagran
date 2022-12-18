@@ -9,7 +9,7 @@
         Title="Szprotify">
     <Grid RowDefinitions="Auto, *, Auto">
         <!--Title bar-->
-        <Grid Grid.Row="0" Background="White" Height="50" ColumnDefinitions="Auto, *, Auto">
+        <Grid Grid.Row="0" Background="#e5e5e5" Height="50" ColumnDefinitions="Auto, *, Auto">
             <Rectangle Grid.Column="0" Fill="Red" Width="50"></Rectangle>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
                 <Label FontWeight="Black">SZPROTIFY</Label>
@@ -31,8 +31,9 @@
             </Rectangle>
         </Grid>
         <!--Footer-->
-        <Grid Margin="4" Grid.Row="2" Background="White" Height="50" ColumnDefinitions="Auto, *, Auto">
-                <Button Grid.Row="0">Settings</Button>
+        <Grid Margin="4" Grid.Row="2" Background="#e5e5e5" Height="50" ColumnDefinitions="Auto, *, Auto">
+                <Button Grid.Row="0"><Image Source="images/icons8Setings.png"/></Button>
+                <!--https://icons8.com-->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
                     <Label FontWeight="Black">Made with:</Label>
                     <Label >.Net AvaloniaUI</Label>

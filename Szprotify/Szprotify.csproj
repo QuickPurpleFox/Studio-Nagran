@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Include="images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TrimmerRootDescriptor Include="Roots.xml" />
   </ItemGroup>
 
