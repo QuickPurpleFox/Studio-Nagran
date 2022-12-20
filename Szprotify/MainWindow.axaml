@@ -6,7 +6,10 @@
         Width="800"
         Height="450"
         x:Class="Szprotify.MainWindow"
-        Title="Szprotify">
+        Title="Szprotify"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True">
     <Grid RowDefinitions="Auto, *, Auto">
         <!--Title bar-->
         <Grid Grid.Row="0" Background="#e5e5e5" Height="50" ColumnDefinitions="Auto, *, Auto">
@@ -26,12 +29,21 @@
                 </StackPanel>
             </Grid>
             <!--Print Albums-->
-            <Rectangle Grid.Column="1" Fill="Purple">
+            <Rectangle Grid.Column="1">
 
             </Rectangle>
         </Grid>
         <!--Footer-->
         <Grid Margin="4" Grid.Row="2" Background="#e5e5e5" Height="50" ColumnDefinitions="Auto, *, Auto">
+                <Grid.Styles>
+                    <Style Selector="Button">
+                        <Setter Property="Background" Value="Transparent"></Setter>
+                    </Style>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+                        <Setter Property="Background" Value="Transparent"></Setter>
+                    </Style>
+                </Grid.Styles>
                 <Button Grid.Row="0"><Image Source="images/icons8Setings.png"/></Button>
                 <!--https://icons8.com-->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
