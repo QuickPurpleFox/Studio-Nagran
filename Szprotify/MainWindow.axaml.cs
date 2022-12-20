@@ -11,10 +11,12 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-    //Button to LogOut (close windows)
+    //Button to LogOut show a dialog "LogInWindow"
     public void LogOut_Click(object sender, RoutedEventArgs e)
     {
-        Close("Loggin out...");
+        var ownerWindow = this;
+        var LogInWindow = new Window();
+        LogInWindow.ShowDialog(ownerWindow);
     }
 
 }
