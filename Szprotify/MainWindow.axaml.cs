@@ -15,8 +15,8 @@ public partial class MainWindow : Window
     public void LogOut_Click(object sender, RoutedEventArgs e)
     {
         var ownerWindow = this;
-        var LogInWindow = new Window();
-        LogInWindow.ShowDialog(ownerWindow);
+        var logInWindow = new LogInWindow();
+        logInWindow.ShowDialog(ownerWindow);
     }
 
 }

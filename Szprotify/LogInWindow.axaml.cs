@@ -9,8 +9,8 @@ public partial class LogInWindow : Window
 {
     public LogInWindow()
     {
-            // Generated with Avalonia.NameGenerator
-            InitializeComponent();
+        // Generated with Avalonia.NameGenerator
+        InitializeComponent();
     }
 
 }

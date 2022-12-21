@@ -5,7 +5,5 @@
         x:Class="Szprotify.LogInWindow"
         Width="250" Height="100"
         Title="LogIn">
-
-  Welcome to avalonia!
-
+  <Label >RECORDING STUDIO</Label>
 </Window>
