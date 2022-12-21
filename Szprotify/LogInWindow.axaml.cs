@@ -12,5 +12,5 @@ public partial class LogInWindow : Window
         // Generated with Avalonia.NameGenerator
         InitializeComponent();
     }
-
+    
 }
