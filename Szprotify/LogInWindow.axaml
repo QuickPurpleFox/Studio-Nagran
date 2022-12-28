@@ -5,5 +5,9 @@
         x:Class="Szprotify.LogInWindow"
         Width="250" Height="100"
         Title="LogIn">
-  <Label >RECORDING STUDIO</Label>
+  <StackPanel>
+    <TextBox Watermark="Username" />
+    <TextBox Watermark="Password" PasswordChar="*" />
+    <Button>Log In</Button>
+  </StackPanel>
 </Window>
