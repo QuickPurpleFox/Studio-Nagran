@@ -3,11 +3,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="Szprotify.LogInWindow"
-        Width="250" Height="100"
+        Width="250" Height="200"
         Title="LogIn">
   <StackPanel>
-    <TextBox Watermark="Username" />
+    <TextBox Watermark="Username" Text="{Binding Username}"/>
     <TextBox Watermark="Password" PasswordChar="*" />
-    <Button>Log In</Button>
+    <Button Name="logInButton" Click="logInButton_Click">Log In</Button>
   </StackPanel>
 </Window>
