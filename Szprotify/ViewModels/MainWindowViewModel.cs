@@ -16,6 +16,7 @@ public class MainWindowViewModel : ViewModelBase
         {
             Console.Write(EntryUsername + " ");
             Console.WriteLine(EntryPassword);
+            ConnectDB.ConnectionToDataBase();
         });
     }
 
