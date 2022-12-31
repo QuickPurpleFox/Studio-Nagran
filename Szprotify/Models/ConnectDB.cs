@@ -25,6 +25,7 @@ public class ConnectDB
             
             connection.Open();
             Console.WriteLine("Done.");
+            connection.Close();
             
         }
         catch (SqlException e)
