@@ -24,9 +24,23 @@
             Margin="10 20"
             CornerRadius="5">
             <StackPanel Margin="25">
-                <TextBox Margin="20" HorizontalAlignment="Center" Watermark="Username" Text="{Binding EntryUsername}"/>
-                <TextBox Margin="20" HorizontalAlignment="Center" Watermark="Password" PasswordChar="#" Text="{Binding EntryPassword}"/>
-                <Button Name="LogInButton" Command="{Binding LogInCommand}">Log In</Button>
+                <TextBox Margin="20" 
+                        HorizontalAlignment="Center" 
+                        Watermark="Username" 
+                        Text="{Binding EntryUsername}"/>
+                <TextBox Margin="20" 
+                        HorizontalAlignment="Center"
+                        Watermark="Password" 
+                        PasswordChar="#" 
+                        Text="{Binding EntryPassword}"/>
+                <Button Name="LogInButton" 
+                        Command="{Binding LogInCommand}"
+                        Background="#1DB954"
+                        Foreground="#FFFFFF">Log In</Button>
+                <Button Name="RegisterButton" 
+                        Command="{Binding RegisterCommand}"
+                        Background="#1DB954"
+                        Foreground="#FFFFFF">Register</Button>
             </StackPanel>
     </Border>
     </StackPanel>

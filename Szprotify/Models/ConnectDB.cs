@@ -16,29 +16,58 @@ namespace Szprotify;
 public class ConnectDB
 {
     //constructor to connect with DB idk if this works
-    public static void ConnectionToDataBase()
+    SQLiteConnection connection = default!;
+    public ConnectDB()
     {
         try
         {
-            // Build connection string
+            //Build connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "../DataBase/SzprotifyDB.db;Versin=3.34.1";
+            builder.DataSource = "../DataBase/SzprotifyDB.db;Version=3.34.1";
 
             // Connect to SQL
             Console.Write("Connecting to SQL Server ... ");
-            IDbConnection connection = new SQLiteConnection(builder.ConnectionString);
-            
+            connection = new SQLiteConnection(builder.ConnectionString);
+
             connection.Open();
             Console.WriteLine("Done.");
             //https://stackoverflow.com/questions/14171794
-            connection.Close();
             
         }
-        catch (SqlException e)
+        catch (SQLiteException e)
         {
             Console.WriteLine(e.ToString());
         }
+    }
 
-        Console.WriteLine("all done.");
+    //login logic
+    public bool Login(string EntryUsername, string EntryPassword)
+    {
+        try{
+            Console.Write("logging ... ");
+            string SqlLogIn = "SELECT COUNT(*) FROM Users WHERE Username = @EntryUsername AND Password = @EntryPassword";
+            SQLiteCommand logincommand = new SQLiteCommand(SqlLogIn, connection);
+
+            logincommand.Parameters.AddWithValue("@Username", EntryUsername);
+            logincommand.Parameters.AddWithValue("@Password", EntryPassword);
+
+            int count = Convert.ToInt32(logincommand.ExecuteScalar());
+            Console.WriteLine("count = " + count);
+            if (count == 1)
+            {
+                Console.WriteLine("success.");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("failed.");
+                return false;
+            }
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
     }
 }
