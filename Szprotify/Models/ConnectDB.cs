@@ -3,6 +3,7 @@ using ReactiveUI;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.Data;
 
 /*
 *nohup sqlitebrowser &
@@ -25,7 +26,7 @@ public class ConnectDB
 
             // Connect to SQL
             Console.Write("Connecting to SQL Server ... ");
-            SqlConnection connection = new SqlConnection(builder.ConnectionString);
+            IDbConnection connection = new SQLiteConnection(builder.ConnectionString);
             
             connection.Open();
             Console.WriteLine("Done.");
