@@ -1,5 +1,4 @@
 using System;
-using ReactiveUI;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data.SQLite;
@@ -15,7 +14,7 @@ namespace Szprotify;
 
 public class ConnectDB
 {
-    //constructor to connect with DB idk if this works
+    //constructor to connect with DB
     SQLiteConnection connection = default!;
     public ConnectDB()
     {
@@ -23,7 +22,7 @@ public class ConnectDB
         {
             //Build connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "../DataBase/SzprotifyDB.db;Version=3.34.1";
+            builder.DataSource = "../DataBase/SzprotifyDB.db";
 
             // Connect to SQL
             Console.Write("Connecting to SQL Server ... ");
@@ -45,14 +44,13 @@ public class ConnectDB
     {
         try{
             Console.Write("logging ... ");
-            string SqlLogIn = "SELECT COUNT(*) FROM Users WHERE Username = @EntryUsername AND Password = @EntryPassword";
+            string SqlLogIn = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
             SQLiteCommand logincommand = new SQLiteCommand(SqlLogIn, connection);
 
             logincommand.Parameters.AddWithValue("@Username", EntryUsername);
             logincommand.Parameters.AddWithValue("@Password", EntryPassword);
 
             int count = Convert.ToInt32(logincommand.ExecuteScalar());
-            Console.WriteLine("count = " + count);
             if (count == 1)
             {
                 Console.WriteLine("success.");
