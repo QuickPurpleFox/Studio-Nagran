@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="370"
-        x:Class="Szprotify.Views.MainWindow"
+        x:Class="Szprotify.Views.RegisterWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Szprotify"
         Width="300"
@@ -15,7 +15,7 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:RegisterWindowViewModel/>
     </Design.DataContext>
 
     <Grid>
@@ -36,11 +36,6 @@
                          PasswordChar="#" 
                          Text="{Binding EntryPassword}"/>
                 <Grid Margin="20" ColumnDefinitions="Auto, Auto" HorizontalAlignment="Center">
-                        <Button Grid.Column="0"
-                                Name="LogInButton" 
-                                Command="{Binding LogInCommand}"
-                                Background="#1DB954"
-                                Foreground="#FFFFFF">Log In</Button>
                         <Button Grid.Column="1"
                                 Name="RegisterButton" 
                                 Command="{Binding RegisterCommand}"

@@ -42,7 +42,8 @@ public class ConnectDB
     //login logic
     public bool Login(string EntryUsername, string EntryPassword)
     {
-        try{
+        try
+        {
             Console.Write("logging ... ");
             string SqlLogIn = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
             SQLiteCommand logincommand = new SQLiteCommand(SqlLogIn, connection);
@@ -67,5 +68,19 @@ public class ConnectDB
             Console.WriteLine(e.ToString());
             return false;
         }
+    }
+
+    public bool Register()
+    {
+        try
+        {
+            
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
+        return false;
     }
 }
