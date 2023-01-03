@@ -9,8 +9,24 @@ namespace Szprotify.ViewModels;
 
 public class RegisterWindowViewModel : ViewModelBase
 {
-    public RegisterWindowViewModel()
+    public RegisterWindowViewModel(ConnectDB connect)
     {
-  
+        RegisterCommandView = ReactiveCommand.Create(() =>
+        {
+            Console.Write("Register [Username: " + EntryUsername + " ");
+            Console.WriteLine("Password: " + EntryPassword + "]");
+            if(connect.Register(EntryUsername, EntryPassword))
+            {
+                
+            }
+            else
+            {
+                
+            }
+        });
     }
+    // binding register button
+    public ICommand RegisterCommandView {get; }
+    public string EntryUsername {get; set; } = default!;
+    public string EntryPassword {get; set; } = default!;
 }

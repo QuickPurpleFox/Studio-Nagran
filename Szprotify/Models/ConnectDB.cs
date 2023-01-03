@@ -70,17 +70,23 @@ public class ConnectDB
         }
     }
 
-    public bool Register()
+    public bool Register(string EntryUsername, string EntryPassword)
     {
         try
         {
-            
+            Console.Write("Register ... ");
+            string SqlRegister = "Insert INTO Users (Usrname, Password, Role) VALUES (@Username, @Password, 0)";
+            SQLiteCommand logincommand = new SQLiteCommand(SqlRegister, connection);
+
+            logincommand.Parameters.AddWithValue("@Username", EntryUsername);
+            logincommand.Parameters.AddWithValue("@Password", EntryPassword);
+            Console.WriteLine("success.");
+            return true;
         }
         catch (SQLiteException e)
         {
             Console.WriteLine(e.ToString());
             return false;
         }
-        return false;
     }
 }

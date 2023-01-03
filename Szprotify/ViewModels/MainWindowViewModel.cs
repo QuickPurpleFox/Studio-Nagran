@@ -5,8 +5,6 @@ using Avalonia;
 using System;
 using System.Windows;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Concurrency;
 using System.Reactive;
 using System.Windows.Input;
 

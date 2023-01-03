@@ -37,8 +37,8 @@
                          Text="{Binding EntryPassword}"/>
                 <Grid Margin="20" ColumnDefinitions="Auto, Auto" HorizontalAlignment="Center">
                         <Button Grid.Column="1"
-                                Name="RegisterButton" 
-                                Command="{Binding RegisterCommand}"
+                                Name="RegisterButtonView" 
+                                Command="{Binding RegisterCommandView}"
                                 Background="#1DB954"
                                 Foreground="#FFFFFF">Register</Button>
                 </Grid>
