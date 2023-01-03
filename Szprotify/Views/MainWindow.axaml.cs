@@ -8,9 +8,4 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-    private void MethodToOpenView()
-    {
-        var window = new RegisterWindow();
-        window.Show();
-    }
 }
