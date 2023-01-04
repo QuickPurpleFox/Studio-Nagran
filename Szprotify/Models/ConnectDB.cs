@@ -76,10 +76,13 @@ public class ConnectDB
         {
             Console.Write("Register ... ");
             string SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 0)";
-            SQLiteCommand logincommand = new SQLiteCommand(SqlRegister, connection);
+            SQLiteCommand registercommand = new SQLiteCommand(SqlRegister, connection);
 
-            logincommand.Parameters.AddWithValue("@Username", EntryUsername);
-            logincommand.Parameters.AddWithValue("@Password", EntryPassword);
+            registercommand.Parameters.AddWithValue("@Username", EntryUsername);
+            registercommand.Parameters.AddWithValue("@Password", EntryPassword);
+
+            registercommand.ExecuteScalar();
+
             Console.WriteLine("success.");
             return true;
         }

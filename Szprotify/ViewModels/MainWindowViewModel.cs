@@ -12,9 +12,10 @@ namespace Szprotify.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    public ConnectDB connect;
     public MainWindowViewModel()
     {
-        ConnectDB connect = new ConnectDB();
+        connect = new ConnectDB();
         NameOfVariableAndAction = ReactiveCommand.Create(MethodToOpenView);
         //Button LogIn on click
         LogInCommand = ReactiveCommand.Create(() =>
@@ -44,7 +45,7 @@ public class MainWindowViewModel : ViewModelBase
     private void MethodToOpenView()
     {
         var RegisterWindow = new Views.RegisterWindow();
-        RegisterWindow.DataContext = new RegisterWindowViewModel(default!);
+        RegisterWindow.DataContext = new RegisterWindowViewModel(connect);
         RegisterWindow.Show();
     }
 

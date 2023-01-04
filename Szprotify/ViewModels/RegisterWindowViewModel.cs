@@ -15,18 +15,11 @@ public class RegisterWindowViewModel : ViewModelBase
         {
             Console.Write("Register [Username: " + EntryUsername + " ");
             Console.WriteLine("Password: " + EntryPassword + "]");
-            if(connect.Register(EntryUsername, EntryPassword))
-            {
-                
-            }
-            else
-            {
-                
-            }
+            connect.Register(EntryUsername, EntryPassword);
         });
     }
     // binding register button
-    public ICommand RegisterCommandView {get; }
+    public ICommand RegisterCommandView {get; } 
     public string EntryUsername {get; set; } = default!;
     public string EntryPassword {get; set; } = default!;
 }
