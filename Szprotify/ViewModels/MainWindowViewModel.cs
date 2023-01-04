@@ -43,8 +43,9 @@ public class MainWindowViewModel : ViewModelBase
 
     private void MethodToOpenView()
     {
-        var window = new Views.RegisterWindow();
-        window.Show();
+        var RegisterWindow = new Views.RegisterWindow();
+        RegisterWindow.DataContext = new RegisterWindowViewModel(default!);
+        RegisterWindow.Show();
     }
 
     //Binding from Views to receive input data

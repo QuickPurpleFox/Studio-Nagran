@@ -75,7 +75,7 @@ public class ConnectDB
         try
         {
             Console.Write("Register ... ");
-            string SqlRegister = "Insert INTO Users (Usrname, Password, Role) VALUES (@Username, @Password, 0)";
+            string SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 0)";
             SQLiteCommand logincommand = new SQLiteCommand(SqlRegister, connection);
 
             logincommand.Parameters.AddWithValue("@Username", EntryUsername);
