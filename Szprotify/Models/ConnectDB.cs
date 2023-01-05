@@ -75,7 +75,21 @@ public class ConnectDB
         try
         {
             Console.Write("Register ... ");
-            string SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 0)";
+            string SqlRegister;
+            int count = HowMuchUsers();
+            if(count>0)
+            {
+                SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 0)";
+            }
+            else if(count==0)
+            {
+                SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 1)";
+            }
+            else
+            {
+                Console.WriteLine("failed.");
+                return false;
+            }
             SQLiteCommand registercommand = new SQLiteCommand(SqlRegister, connection);
 
             registercommand.Parameters.AddWithValue("@Username", EntryUsername);
@@ -90,6 +104,25 @@ public class ConnectDB
         {
             Console.WriteLine(e.ToString());
             return false;
+        }
+    }
+
+    public int HowMuchUsers()
+    {
+        try
+        {
+            Console.Write("Amount of users ... ");
+            string Sqlcount = "SELECT COUNT(*) FROM Users";
+            SQLiteCommand CountCommand = new SQLiteCommand(Sqlcount, connection);
+
+            int CountOfUsers = Convert.ToInt32(CountCommand.ExecuteScalar());
+            Console.WriteLine(CountOfUsers);
+            return CountOfUsers;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return -1;
         }
     }
 }
