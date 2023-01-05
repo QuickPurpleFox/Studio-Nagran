@@ -24,7 +24,7 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine("Password: " + EntryPassword + "]");
             if(connect.Login(EntryUsername, EntryPassword))
             {
-                
+
             }
             else
             {
@@ -65,9 +65,35 @@ public class MainWindowViewModel : ViewModelBase
     //https://www.reddit.com/r/AvaloniaUI/comments/zxeua8/cant_get_string_from_textbox_binding/
     public ICommand LogInCommand {get; }
     public ICommand RegisterCommand {get; }
-    public string EntryUsername {get; set; } = default!;
+    private string entryusername = string.Empty;
+    public string EntryUsername
+    {
+        get
+        {
+            return entryusername;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref entryusername, value);
+            if (EntryUsername.Length >= 5)
+            {
+                Enable = true;
+            }
+            else
+            {
+                Enable = false;
+            }
+        }
+    }
     public string EntryPassword {get; set; } = default!;
     public ReactiveCommand<Unit, Unit> ChangeTheme { get; } = default!;
+    private bool enable = false;
+
+    public bool Enable
+    {
+        get => enable;
+        set => this.RaiseAndSetIfChanged(ref enable, value);
+    }
 
     
 }
