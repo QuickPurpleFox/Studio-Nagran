@@ -30,8 +30,7 @@
             </MenuItem>
             <MenuItem Header="Switch theme" Command="{Binding ChangeTheme}" />
         </Menu>
-    <Border Background="White"
-            Margin="10 20"
+    <Border Margin="10 20"
             CornerRadius="5">
             <StackPanel Margin="25">
                 <TextBox Margin="20" 
@@ -48,14 +47,10 @@
                 <Grid Margin="20" ColumnDefinitions="Auto, Auto" HorizontalAlignment="Center">
                         <Button Grid.Column="0"
                                 Name="LogInButton" 
-                                Command="{Binding LogInCommand}"
-                                Background="#1DB954"
-                                Foreground="#FFFFFF">Log In</Button>
+                                Command="{Binding LogInCommand}">Log In</Button>
                         <Button Grid.Column="1"
                                 Name="RegisterButton" 
-                                Command="{Binding RegisterCommand}"
-                                Background="#1DB954"
-                                Foreground="#FFFFFF">Register</Button>
+                                Command="{Binding RegisterCommand}">Register</Button>
                 </Grid>
             </StackPanel>
     </Border>

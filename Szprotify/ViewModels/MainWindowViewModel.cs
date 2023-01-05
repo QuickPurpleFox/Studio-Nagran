@@ -13,7 +13,7 @@ namespace Szprotify.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     public ConnectDB connect;
-    public MainWindowViewModel()
+    public MainWindowViewModel(StyleManager styles)
     {
         connect = new ConnectDB();
         NameOfVariableAndAction = ReactiveCommand.Create(MethodToOpenView);
@@ -38,6 +38,16 @@ public class MainWindowViewModel : ViewModelBase
             //https://www.reddit.com/r/AvaloniaUI/comments/101h4w0/comment/j2nfqfu/?context=3
             MethodToOpenView();
         });
+        // Each time a user clicks 'Switch theme', we load next theme. See 'StyleManager.cs'.
+        ChangeTheme = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
+        {
+            StyleManager.Theme.Citrus => StyleManager.Theme.Sea,
+            StyleManager.Theme.Sea => StyleManager.Theme.Rust,
+            StyleManager.Theme.Rust => StyleManager.Theme.Candy,
+            StyleManager.Theme.Candy => StyleManager.Theme.Magma,
+            StyleManager.Theme.Magma => StyleManager.Theme.Citrus,
+            _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
+        }));
     }
     
     public ReactiveCommand<Unit, Unit> NameOfVariableAndAction {get; }
@@ -55,6 +65,7 @@ public class MainWindowViewModel : ViewModelBase
     public ICommand RegisterCommand {get; }
     public string EntryUsername {get; set; } = default!;
     public string EntryPassword {get; set; } = default!;
+    public ReactiveCommand<Unit, Unit> ChangeTheme { get; } = default!;
 
     
 }

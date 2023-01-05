@@ -7,7 +7,7 @@ using System.Data;
 /*
 *nohup sqlitebrowser &
 *dotnet add Szprotify package System.Data.SQLite.Core
-*dotnet add Szprotify package dapper
+*dotnet add Szprotify package Citrus.Avalonia
 */
 
 namespace Szprotify;
