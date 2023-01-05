@@ -20,6 +20,16 @@
 
     <Grid>
     <StackPanel>
+    <Menu Grid.Row="0">
+            <MenuItem Header="Settings">
+                <MenuItem Header="With items">
+                    <MenuItem Header="First item" />
+                    <MenuItem Header="Second item" />
+                </MenuItem>
+                <MenuItem Header="Enabled" IsEnabled="True" />
+            </MenuItem>
+            <MenuItem Header="Switch theme" Command="{Binding ChangeTheme}" />
+        </Menu>
     <Border Background="White"
             Margin="10 20"
             CornerRadius="5">
