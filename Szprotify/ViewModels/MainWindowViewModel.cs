@@ -16,7 +16,8 @@ public class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(StyleManager styles)
     {
         connect = new ConnectDB();
-        NameOfVariableAndAction = ReactiveCommand.Create(MethodToOpenView);
+        OpenRegister = ReactiveCommand.Create(MethodToOpenRegister);
+        OpenAplication = ReactiveCommand.Create(MethodToOpenApplication);
         //Button LogIn on click
         LogInCommand = ReactiveCommand.Create(() =>
         {
@@ -24,7 +25,7 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine("Password: " + EntryPassword + "]");
             if(connect.Login(EntryUsername, EntryPassword))
             {
-
+                MethodToOpenApplication();
             }
             else
             {
@@ -36,7 +37,7 @@ public class MainWindowViewModel : ViewModelBase
         RegisterCommand = ReactiveCommand.Create(() =>
         {
             //https://www.reddit.com/r/AvaloniaUI/comments/101h4w0/comment/j2nfqfu/?context=3
-            MethodToOpenView();
+            MethodToOpenRegister();
         });
         // Each time a user clicks 'Switch theme', we load next theme. See 'StyleManager.cs'.
         ChangeTheme = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
@@ -52,14 +53,21 @@ public class MainWindowViewModel : ViewModelBase
         }));
     }
     
-    public ReactiveCommand<Unit, Unit> NameOfVariableAndAction {get; }
-
-    private void MethodToOpenView()
+    public ReactiveCommand<Unit, Unit> OpenRegister {get; }
+    public ReactiveCommand<Unit, Unit> OpenAplication {get; }
+    private void MethodToOpenRegister()
     {
         var RegisterWindow = new Views.RegisterWindow();
         var styles = new StyleManager(RegisterWindow);
         RegisterWindow.DataContext = new RegisterWindowViewModel(connect, styles);
         RegisterWindow.Show();
+    }
+    private void MethodToOpenApplication()
+    {
+        var ApplicationWindow = new Views.ApplicationWindow();
+        var styles = new StyleManager(ApplicationWindow);
+        ApplicationWindow.DataContext = new ApplicationWindowViewModel(connect, styles);
+        ApplicationWindow.Show();
     }
 
     //Binding from Views to receive input data
