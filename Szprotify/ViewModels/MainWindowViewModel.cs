@@ -57,7 +57,8 @@ public class MainWindowViewModel : ViewModelBase
     private void MethodToOpenView()
     {
         var RegisterWindow = new Views.RegisterWindow();
-        RegisterWindow.DataContext = new RegisterWindowViewModel(connect);
+        var styles = new StyleManager(RegisterWindow);
+        RegisterWindow.DataContext = new RegisterWindowViewModel(connect, styles);
         RegisterWindow.Show();
     }
 
@@ -75,7 +76,7 @@ public class MainWindowViewModel : ViewModelBase
         set
         {
             this.RaiseAndSetIfChanged(ref entryusername, value);
-            if (EntryUsername.Length >= 5)
+            if (EntryUsername.Length >= 5 && EntryPassword.Length >= 5)
             {
                 Enable = true;
             }
@@ -85,10 +86,29 @@ public class MainWindowViewModel : ViewModelBase
             }
         }
     }
-    public string EntryPassword {get; set; } = default!;
+    //public string EntryPassword {get; set; } = default!;
+    private string entrypassword = string.Empty;
+    public string EntryPassword
+    {
+        get
+        {
+            return entrypassword;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref entrypassword, value);
+            if (EntryPassword.Length >= 5 && EntryUsername.Length >= 5)
+            {
+                Enable = true;
+            }
+            else
+            {
+                Enable = false;
+            }
+        }
+    }
     public ReactiveCommand<Unit, Unit> ChangeTheme { get; } = default!;
     private bool enable = false;
-
     public bool Enable
     {
         get => enable;
