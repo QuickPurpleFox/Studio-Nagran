@@ -3,8 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml.Styling;
 
 /*
-*nohup sqlitebrowser &
-*dotnet add Szprotify package System.Data.SQLite.Core
 *dotnet add Szprotify package Citrus.Avalonia
 */
 
@@ -12,12 +10,13 @@ namespace Szprotify;
 
 public sealed class StyleManager
     {
-        public enum Theme { Citrus, Sea, Rust, Candy, Magma }
+        //public enum Theme { Citrus, Sea, Rust, Candy, Magma }
+        public enum Theme { Sea, Magma }
         
         private readonly StyleInclude _magmaStyle = CreateStyle("avares://Citrus.Avalonia/Magma.xaml");
-        private readonly StyleInclude _candyStyle = CreateStyle("avares://Citrus.Avalonia/Candy.xaml");
-        private readonly StyleInclude _citrusStyle = CreateStyle("avares://Citrus.Avalonia/Citrus.xaml");
-        private readonly StyleInclude _rustStyle = CreateStyle("avares://Citrus.Avalonia/Rust.xaml");
+        //private readonly StyleInclude _candyStyle = CreateStyle("avares://Citrus.Avalonia/Candy.xaml");
+        //private readonly StyleInclude _citrusStyle = CreateStyle("avares://Citrus.Avalonia/Citrus.xaml");
+        //private readonly StyleInclude _rustStyle = CreateStyle("avares://Citrus.Avalonia/Rust.xaml");
         private readonly StyleInclude _seaStyle = CreateStyle("avares://Citrus.Avalonia/Sea.xaml");
         private readonly Window _window;
 
@@ -28,15 +27,15 @@ public sealed class StyleManager
             // We add the style to the window styles section, so it
             // will override the default style defined in App.xaml. 
             if (window.Styles.Count == 0)
-                window.Styles.Add(_citrusStyle);
+                window.Styles.Add(_magmaStyle);
             
             // If there are styles defined already, we assume that
             // the first style imported it related to citrus.
             // This allows one to override citrus styles.
-            else window.Styles[0] = _citrusStyle;
+            else window.Styles[0] = _magmaStyle;
         }
 
-        public Theme CurrentTheme { get; private set; } = Theme.Citrus;
+        public Theme CurrentTheme { get; private set; } = Theme.Magma;
         
         public void UseTheme(Theme theme)
         {
@@ -45,10 +44,10 @@ public sealed class StyleManager
             // to invoke such methods from the UI thread.
             _window.Styles[0] = theme switch
             {
-                Theme.Citrus => _citrusStyle,
+                //Theme.Citrus => _citrusStyle,
                 Theme.Sea => _seaStyle,
-                Theme.Rust => _rustStyle,
-                Theme.Candy => _candyStyle,
+                //Theme.Rust => _rustStyle,
+                //Theme.Candy => _candyStyle,
                 Theme.Magma => _magmaStyle,
                 _ => throw new ArgumentOutOfRangeException(nameof(theme))
             };
@@ -62,11 +61,13 @@ public sealed class StyleManager
             // supported color schemes one by one.
             UseTheme(CurrentTheme switch
             {
-                Theme.Citrus => Theme.Sea,
-                Theme.Sea => Theme.Rust,
-                Theme.Rust => Theme.Candy,
-                Theme.Candy => Theme.Magma,
-                Theme.Magma => Theme.Citrus,
+                //Theme.Citrus => Theme.Sea,
+                //Theme.Sea => Theme.Rust,
+                //Theme.Rust => Theme.Candy,
+                //Theme.Candy => Theme.Magma,
+                //Theme.Magma => Theme.Citrus,
+                Theme.Magma => Theme.Sea,
+                Theme.Sea => Theme.Magma,
                 _ => throw new ArgumentOutOfRangeException(nameof(CurrentTheme))
             });
         }
