@@ -8,7 +8,6 @@ public class ApplicationWindowViewModel : ViewModelBase
 {
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles)
     {        
-
         ChangeTheme = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
         {
             //StyleManager.Theme.Citrus => StyleManager.Theme.Sea,
@@ -20,6 +19,7 @@ public class ApplicationWindowViewModel : ViewModelBase
             StyleManager.Theme.Sea => StyleManager.Theme.Magma,
             _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
         }));
+        
     }
     // binding button
     public ReactiveCommand<Unit, Unit> ChangeTheme { get; } = default!;
