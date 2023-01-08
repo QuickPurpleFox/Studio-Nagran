@@ -6,8 +6,9 @@ namespace Szprotify.ViewModels;
 
 public class ApplicationWindowViewModel : ViewModelBase
 {
-    public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles)
-    {        
+    public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
+    {
+        UserData user = new UserData(connect.getRole(username), connect.getId(username), username);        
         ChangeTheme = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
         {
             //StyleManager.Theme.Citrus => StyleManager.Theme.Sea,

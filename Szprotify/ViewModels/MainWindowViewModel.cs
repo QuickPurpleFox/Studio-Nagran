@@ -25,7 +25,6 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine("Password: " + EntryPassword + "]");
             if(connect.Login(EntryUsername, EntryPassword))
             {
-                UserData user = new UserData(connect.getRole(entryusername), connect.getId(entryusername), entryusername);
                 MethodToOpenApplication();
             }
             else
@@ -67,7 +66,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         var ApplicationWindow = new Views.ApplicationWindow();
         var styles = new StyleManager(ApplicationWindow);
-        ApplicationWindow.DataContext = new ApplicationWindowViewModel(connect, styles);
+        ApplicationWindow.DataContext = new ApplicationWindowViewModel(connect, styles, EntryUsername);
         ApplicationWindow.Show();
     }
 
