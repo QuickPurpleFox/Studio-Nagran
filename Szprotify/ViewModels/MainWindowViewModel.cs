@@ -25,6 +25,7 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine("Password: " + EntryPassword + "]");
             if(connect.Login(EntryUsername, EntryPassword))
             {
+                UserData user = new UserData(connect.getRole(entryusername), connect.getId(entryusername), entryusername);
                 MethodToOpenApplication();
             }
             else

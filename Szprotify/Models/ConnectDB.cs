@@ -125,4 +125,45 @@ public class ConnectDB
             return -1;
         }
     }
+
+    public string getRole(string username)
+    {
+        try
+        {
+            Console.Write("Role of user ... ");
+            string SqlRole = "SELECT Role FROM Users WHERE Username = @username";
+            SQLiteCommand RoleCommand = new SQLiteCommand(SqlRole, connection);
+            RoleCommand.Parameters.AddWithValue("@Username", username);
+
+
+            string UserRole = Convert.ToString(RoleCommand.ExecuteScalar()) ?? throw new ArgumentException();
+            Console.WriteLine(UserRole);
+            return UserRole;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "User";
+        }
+    }
+
+    public int getId( string username)
+    {
+        try
+        {
+            Console.Write("Id of user ... ");
+            string SqlIdString = "SELECT Id FROM Users WHERE Username = @username";
+            SQLiteCommand IdCommand = new SQLiteCommand(SqlIdString, connection);
+            IdCommand.Parameters.AddWithValue("@Username", username);
+
+            int UserId = Convert.ToInt32(IdCommand.ExecuteScalar());
+            Console.WriteLine(UserId);
+            return UserId;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return -1;
+        }
+    }
 }
