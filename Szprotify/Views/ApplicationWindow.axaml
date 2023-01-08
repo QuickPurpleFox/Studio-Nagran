@@ -39,13 +39,30 @@
             <StackPanel Grid.Column="0">
                 <Border Classes="Card">
                     <StackPanel>
-                        <TextBlock Classes="Heading" Text="Heading class" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0"
+                                    Content="Enabled button" />
+                            <Button Grid.Column="2"
+                                    IsEnabled="False"
+                                    Content="Disabled one" />
+                            <Button Grid.Column="4"
+                                    Classes="Primary"
+                                    Content="Primary button" />
+                        </Grid>
+                        <!--<TextBlock Classes="Heading" Text="Heading class" />
                         <TextBlock Classes="Caption" Text="Caption class" />
                         <TextBlock Margin="0 5" 
                                    Text="Hi, I'm a tooltip! Please, hover over me."
                                    ToolTip.Tip="Hello, this is magic!" />
                         
-                        <!-- Radio buttons and check boxes -->
+                        
                         <Grid Margin="0 5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -62,7 +79,7 @@
                                       Content="Check me!" />
                         </Grid>
                         
-                        <!-- Slider and progress bar -->
+                        
                         <Slider Name="slider" Orientation="Horizontal" Value="35" Height="20" />
                         <ProgressBar Orientation="Horizontal" 
                                      Margin="0 5"
@@ -72,7 +89,7 @@
                             </ProgressBar.Value>
                         </ProgressBar>
                         
-                        <!-- Text boxes and text areas -->
+                        
                         <TextBox Watermark="This is the simple watermark example."
                                  Text="{Binding Path=Message}" />
                         <TextBox UseFloatingWatermark="True"
@@ -102,7 +119,7 @@
                                            Value="42" />
                         </Grid>
                         
-                        <!-- Buttons -->
+                        
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -133,7 +150,7 @@
                                           Classes="Primary"
                                           IsChecked="False"
                                           Content="Disabled toggle" />
-                        </Grid>
+                        </Grid> -->
                     </StackPanel>
                 </Border>
             </StackPanel>
