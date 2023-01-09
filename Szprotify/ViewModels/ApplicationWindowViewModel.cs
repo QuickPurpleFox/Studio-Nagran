@@ -6,9 +6,10 @@ namespace Szprotify.ViewModels;
 
 public class ApplicationWindowViewModel : ViewModelBase
 {
+    public UserData user = default!;
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
     {
-        UserData user = new UserData(connect.getRole(username), connect.getId(username), username);        
+        user = new UserData(connect.getRole(username), connect.getId(username), username);        
         ChangeTheme = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
         {
             //StyleManager.Theme.Citrus => StyleManager.Theme.Sea,
@@ -21,7 +22,21 @@ public class ApplicationWindowViewModel : ViewModelBase
             _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
         }));
         
+        
     }
     // binding button
     public ReactiveCommand<Unit, Unit> ChangeTheme { get; } = default!;
+    private string printusername = string.Empty;
+    public string PrintUsername
+    {
+        get
+        {
+            return "Hello: "+user.Username;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref printusername, value);
+            PrintUsername = user.Username;
+        }
+    }
 }

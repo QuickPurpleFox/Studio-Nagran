@@ -33,28 +33,28 @@
         </Menu>
         <Grid Grid.Row="1" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="315" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <Border Classes="Card">
                     <StackPanel>
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="10" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="10" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0"
-                                    Content="Enabled button" />
-                            <Button Grid.Column="2"
-                                    IsEnabled="False"
-                                    Content="Disabled one" />
-                            <Button Grid.Column="4"
-                                    Classes="Primary"
-                                    Content="Primary button" />
+                            <TextBlock Classes="Caption" 
+                                    Text="{Binding PrintUsername}" 
+                                    TextAlignment="Center"/>
+                        </Grid>
+                        <Grid Width="10">
+                        </Grid>
+                        <Grid>
+                            <Button Content="Profile" 
+                                    Command="{Binding ChangeTheme}"/>
+                        </Grid>
+                        <Grid>
+                            <Button Content="Shop" 
+                                    Command="{Binding ChangeTheme}"/>
+                        </Grid>
+                        <Grid>
                         </Grid>
                         <!--<TextBlock Classes="Heading" Text="Heading class" />
                         <TextBlock Classes="Caption" Text="Caption class" />
