@@ -38,13 +38,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <Border Classes="Card">
-                    <StackPanel>
-                        <Grid>
+                    <StackPanel Height="500">
+                        <Grid Margin="10">
                             <TextBlock Classes="Caption" 
                                     Text="{Binding PrintUsername}" 
                                     TextAlignment="Center"/>
-                        </Grid>
-                        <Grid Width="10">
                         </Grid>
                         <Grid>
                             <Button Content="Profile" 
@@ -55,6 +53,7 @@
                                     Command="{Binding ChangeTheme}"/>
                         </Grid>
                         <Grid>
+                            <Image Source="../Assets/BaseLogo.jpg" Margin="10"/>
                         </Grid>
                         <!--<TextBlock Classes="Heading" Text="Heading class" />
                         <TextBlock Classes="Caption" Text="Caption class" />
