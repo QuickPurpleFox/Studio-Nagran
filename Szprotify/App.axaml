@@ -20,4 +20,9 @@
         <!-- <StyleInclude Source="avares://Citrus.Avalonia/Magma.xaml"/> -->
     </Application.Styles>
 
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+
 </Application>

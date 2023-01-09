@@ -79,11 +79,11 @@ public class ConnectDB
             int count = HowMuchUsers();
             if(count>0)
             {
-                SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 0)";
+                SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 'User')";
             }
             else if(count==0)
             {
-                SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 1)";
+                SqlRegister = "INSERT INTO Users (Username, Password, Role) VALUES (@Username, @Password, 'Admin')";
             }
             else
             {
