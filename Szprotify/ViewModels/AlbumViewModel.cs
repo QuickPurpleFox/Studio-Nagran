@@ -7,9 +7,9 @@ namespace Szprotify.ViewModels;
 
 public class AlbumViewModel : ViewModelBase
 {
+    //private readonly Album _album;
     public AlbumViewModel()
     {
-
     }
     // binding button
 }

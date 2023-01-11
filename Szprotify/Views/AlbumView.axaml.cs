@@ -2,7 +2,7 @@ using Avalonia.Controls;
 
 namespace Szprotify.Views;
 
-public partial class AlbumView : Window
+public partial class AlbumView : UserControl
 {
     public AlbumView()
     {

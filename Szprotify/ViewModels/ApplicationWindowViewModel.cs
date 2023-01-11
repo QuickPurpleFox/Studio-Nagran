@@ -1,17 +1,18 @@
 using System;
 using System.Reactive;
 using System.Collections.ObjectModel;
+using Avalonia.Collections;
 using ReactiveUI;
 
 namespace Szprotify.ViewModels;
 
 public class ApplicationWindowViewModel : ViewModelBase
 {
-    public ObservableCollection<UserData> SearchResults { get; } = new();
+    public AvaloniaList<AlbumViewModel> SearchResults { get; } = new();
     public UserData user = default!;
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
     {
-        SearchResults.Add(user);
+        SearchResults.Add(new AlbumViewModel());
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
             if (user.Role == "Admin")
