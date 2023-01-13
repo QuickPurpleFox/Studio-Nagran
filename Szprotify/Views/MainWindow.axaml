@@ -7,10 +7,13 @@
         x:Class="Szprotify.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Szprotify"
-        Width="300"
+        Width="320"
         Height="370"
         WindowStartupLocation="CenterScreen"
-        CanResize="false">
+        CanResize="false"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True">
     
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -18,7 +21,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <Grid>
+    <Panel>
     <StackPanel>
     <Menu Grid.Row="0">
             <MenuItem Header="Settings">
@@ -30,9 +33,10 @@
             </MenuItem>
             <MenuItem Header="Switch theme" Command="{Binding ChangeTheme}" />
         </Menu>
-    <Border Margin="10 20"
-            CornerRadius="5">
-            <StackPanel Margin="25">
+    <Border Margin="5"
+            CornerRadius="5"
+            Classes="Card">
+            <StackPanel>
                 <TextBox Margin="20" 
                          Width="180"
                          HorizontalAlignment="Center" 
@@ -61,5 +65,5 @@
             </StackPanel>
     </Border>
     </StackPanel>
-    </Grid>
+    </Panel>
 </Window>

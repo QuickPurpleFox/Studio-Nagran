@@ -8,7 +8,10 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Szprotify"
         WindowStartupLocation="CenterScreen"
-        Width="950" Height="630">
+        Width="950" Height="630"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
