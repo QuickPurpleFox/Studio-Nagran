@@ -71,10 +71,16 @@
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Border Classes="Card">
+                    <StackPanel>
+                        <Grid>
+
+                        </Grid>
+                    <Border Height="1" Background="Black" />
                     <ListBox Items="{Binding SearchResults}"  
                             Background="Transparent" 
                             Margin="0 20">
                     </ListBox>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Grid>
