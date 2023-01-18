@@ -72,8 +72,25 @@
             <StackPanel Grid.Column="1">
                 <Border Classes="Card">
                     <StackPanel>
-                        <Grid>
-
+                        <Grid Margin= "10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="1"
+                                    Classes="Caption" 
+                                    Text="Title" 
+                                    TextAlignment="Left"/>
+                            <TextBlock Grid.Column="2"
+                                    Classes="Caption" 
+                                    Text="Album" 
+                                    TextAlignment="Center"/>
+                            <TextBlock Grid.Column="3"
+                                    Classes="Caption" 
+                                    Text="Time" 
+                                    TextAlignment="Right"/>
                         </Grid>
                     <Border Height="1" Background="Black" />
                     <ListBox Items="{Binding SearchResults}"  
