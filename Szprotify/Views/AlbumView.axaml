@@ -11,6 +11,27 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <TextBlock Text="Test"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="0">
+            <Image Width="75" Stretch="Uniform" Source="../Assets/STARSET_INFECTED.jpg" />
+            <TextBlock Text="INFECTED"
+                    VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1">
+            <TextBlock Text="STARSET"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="2">
+            <TextBlock Text="3:08"
+                    TextAlignment="Right"
+                    VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
 
 </UserControl>
