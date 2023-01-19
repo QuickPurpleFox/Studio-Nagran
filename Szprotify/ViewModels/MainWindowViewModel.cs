@@ -47,8 +47,8 @@ public class MainWindowViewModel : ViewModelBase
             //StyleManager.Theme.Rust => StyleManager.Theme.Candy,
             //StyleManager.Theme.Candy => StyleManager.Theme.Magma,
             //StyleManager.Theme.Magma => StyleManager.Theme.Citrus,
-            StyleManager.Theme.Magma => StyleManager.Theme.Sea,
-            StyleManager.Theme.Sea => StyleManager.Theme.Magma,
+            StyleManager.Theme.Magma => StyleManager.Theme.Rust,
+            StyleManager.Theme.Rust => StyleManager.Theme.Magma,
             _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
         }));
     }

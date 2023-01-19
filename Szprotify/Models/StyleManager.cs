@@ -11,13 +11,13 @@ namespace Szprotify;
 public sealed class StyleManager
     {
         //public enum Theme { Citrus, Sea, Rust, Candy, Magma }
-        public enum Theme { Sea, Magma }
+        public enum Theme { Rust, Magma }
         
         private readonly StyleInclude _magmaStyle = CreateStyle("avares://Citrus.Avalonia/Magma.xaml");
         //private readonly StyleInclude _candyStyle = CreateStyle("avares://Citrus.Avalonia/Candy.xaml");
         //private readonly StyleInclude _citrusStyle = CreateStyle("avares://Citrus.Avalonia/Citrus.xaml");
         //private readonly StyleInclude _rustStyle = CreateStyle("avares://Citrus.Avalonia/Rust.xaml");
-        private readonly StyleInclude _seaStyle = CreateStyle("avares://Citrus.Avalonia/Sea.xaml");
+        private readonly StyleInclude _rustStyle = CreateStyle("avares://Citrus.Avalonia/Rust.xaml");
         private readonly Window _window;
 
         public StyleManager(Window window)
@@ -45,7 +45,7 @@ public sealed class StyleManager
             _window.Styles[0] = theme switch
             {
                 //Theme.Citrus => _citrusStyle,
-                Theme.Sea => _seaStyle,
+                Theme.Rust => _rustStyle,
                 //Theme.Rust => _rustStyle,
                 //Theme.Candy => _candyStyle,
                 Theme.Magma => _magmaStyle,
@@ -66,8 +66,8 @@ public sealed class StyleManager
                 //Theme.Rust => Theme.Candy,
                 //Theme.Candy => Theme.Magma,
                 //Theme.Magma => Theme.Citrus,
-                Theme.Magma => Theme.Sea,
-                Theme.Sea => Theme.Magma,
+                Theme.Magma => Theme.Rust,
+                Theme.Rust => Theme.Magma,
                 _ => throw new ArgumentOutOfRangeException(nameof(CurrentTheme))
             });
         }
