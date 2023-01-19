@@ -48,6 +48,9 @@
                          Watermark="Password" 
                          PasswordChar="#" 
                          Text="{Binding EntryPassword}"/>
+                <TextBlock Classes="Caption" 
+                         Text="{Binding errorMessage}" 
+                         TextAlignment="Center"/>
                 <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />

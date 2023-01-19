@@ -29,7 +29,7 @@ public class MainWindowViewModel : ViewModelBase
             }
             else
             {
-                
+                errorMessage = "WRONG USERNAME OR PASSWORD";
             }
         });
 
@@ -117,7 +117,18 @@ public class MainWindowViewModel : ViewModelBase
         get => enable;
         set => this.RaiseAndSetIfChanged(ref enable, value);
     }
-
+    private string errormessage = string.Empty;
+    public string errorMessage
+    {
+        get
+        {
+            return errormessage;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref errormessage, value);
+        }
+    }
     
 }
 
