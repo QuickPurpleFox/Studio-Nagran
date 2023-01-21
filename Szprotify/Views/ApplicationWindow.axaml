@@ -64,7 +64,7 @@
                                     IsVisible="{Binding IsVisibleAdmin}"/>
                         </Grid>
                         <Grid>
-                            <Image Source="../Assets/BaseLogo.jpg" Margin="10"/>
+                            <Image Source="../Assets/BaseLogo.png" Margin="10"/>
                         </Grid>
                     </StackPanel>
                 </Border>

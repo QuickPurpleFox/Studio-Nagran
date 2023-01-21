@@ -18,7 +18,7 @@ public class AlbumViewModel : ViewModelBase
     private String datatitle = String.Empty;
     public String DataTitle
     {
-        get => datatitle;
+        get => " "+datatitle;
         set => this.RaiseAndSetIfChanged(ref datatitle, value);
     }
     private String dataalbum = String.Empty;
