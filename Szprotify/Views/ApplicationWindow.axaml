@@ -85,7 +85,7 @@
                                     TextAlignment="Left"/>
                             <TextBlock Grid.Column="2"
                                     Classes="Caption" 
-                                    Text="Album" 
+                                    Text="Artist" 
                                     TextAlignment="Center"/>
                             <TextBlock Grid.Column="3"
                                     Classes="Caption" 

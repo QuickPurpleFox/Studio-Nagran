@@ -19,16 +19,16 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="0">
             <Image Width="20" Stretch="Uniform" Source="../Assets/STARSET_INFECTED.jpg" />
-            <TextBlock Text=" INFECTED"
+            <TextBlock Text="{Binding DataTitle}"
                     VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1">
-            <TextBlock Text="STARSET"
+            <TextBlock Text="{Binding DataAlbum}"
                     TextAlignment="Center"
                     VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="2">
-            <TextBlock Text="3:08"
+            <TextBlock Text="{Binding DataTime}"
                     TextAlignment="Right"
                     VerticalAlignment="Center"/>
         </StackPanel>

@@ -12,7 +12,8 @@ public class ApplicationWindowViewModel : ViewModelBase
     public UserData user = default!;
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
     {
-        SearchResults.Add(new AlbumViewModel());
+        SearchResults.Add(new AlbumViewModel("Infected", "STARSET", "3:08"));
+        SearchResults.Add(new AlbumViewModel("My Heart I Surrender", "I Prevail", "3:27"));
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
             if (user.Role == "Admin")
