@@ -24,15 +24,8 @@
     <Panel>
     <StackPanel>
     <Menu Grid.Row="0">
-            <MenuItem Header="Settings">
-                <MenuItem Header="With items">
-                    <MenuItem Header="First item" />
-                    <MenuItem Header="Second item" />
-                </MenuItem>
-                <MenuItem Header="Enabled" IsEnabled="True" />
-            </MenuItem>
-            <MenuItem Header="Switch theme" Command="{Binding ChangeTheme}" />
-        </Menu>
+        <MenuItem Header="Switch theme" Command="{Binding ChangeTheme}" />
+    </Menu>
     <Border Margin="5"
             CornerRadius="5"
             Classes="Card">

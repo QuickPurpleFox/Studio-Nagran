@@ -18,19 +18,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="Menu option number one">
-                <MenuItem Header="With items">
-                    <MenuItem Header="First item" />
-                    <MenuItem Header="Second item" />
-                </MenuItem>
-                <MenuItem Header="Disabled" IsEnabled="False" />
-            </MenuItem>
-            <MenuItem Header="Menu option number two">
-                <MenuItem Header="With items">
-                    <MenuItem Header="First item" />
-                    <MenuItem Header="Second item" />
-                </MenuItem>
-                <MenuItem Header="Enabled" IsEnabled="True" />
+            <MenuItem Header="Switch Launguage">
+                <MenuItem Header="English" Command="{Binding EnglishLaunguage}"/>
+                <MenuItem Header="Polski" />
             </MenuItem>
             <MenuItem Header="Switch theme" Command="{Binding ChangeTheme}" />
         </Menu>
@@ -49,18 +39,19 @@
                         </Grid>
                         <Grid>
                             <Button Content="Profile" 
-                                    Command="{Binding ChangeTheme}"/>
+                                    Command="{Binding ProfileButton}"/>
                         </Grid>
                         <Grid>
                             <Button Content="Shop" 
-                                    Command="{Binding ChangeTheme}"/>
+                                    Command="{Binding ShopButton}"/>
                         </Grid>
                         <Grid>
                             <Button Content="Add Album" 
-                                    Command="{Binding ChangeTheme}"/>
+                                    Command="{Binding AddAlbumButton}"/>
                         </Grid>
                         <Grid>
-                            <Button Content="User management" 
+                            <Button Content="User Management" 
+                                    Command="{Binding ManagementButton}"
                                     IsVisible="{Binding IsVisibleAdmin}"/>
                         </Grid>
                         <Grid>
