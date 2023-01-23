@@ -49,7 +49,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         EnglishLaunguage = ReactiveCommand.Create(() =>
         {
             lines = System.IO.File.ReadAllLines(@"Assets/en_us.txt");
-            //change language to polish
+            //change language to English
             SwitchThemeButton = lines[0];
             SwitchLanguageButton = lines[1];
             ProfileButtonText = lines[2];
