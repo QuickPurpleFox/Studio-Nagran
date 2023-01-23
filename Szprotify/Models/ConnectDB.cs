@@ -166,4 +166,24 @@ public class ConnectDB
             return -1;
         }
     }
+
+    public int getCash( string username)
+    {
+        try
+        {
+            Console.Write("User Cash amount ... ");
+            string SqlIdString = "SELECT Cash FROM Users WHERE Username = @username";
+            SQLiteCommand IdCommand = new SQLiteCommand(SqlIdString, connection);
+            IdCommand.Parameters.AddWithValue("@Username", username);
+
+            int UserCash = Convert.ToInt32(IdCommand.ExecuteScalar());
+            Console.WriteLine(UserCash);
+            return UserCash;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return -1;
+        }
+    }
 }
