@@ -188,6 +188,9 @@ public class ConnectDB
         }
     }
 
+
+    //---------------------------------------ALBUMS---------------------------------------
+
     public void getAlbumID(int id, ref List<int> albums)
     {
         try
@@ -259,6 +262,28 @@ public class ConnectDB
         {
             Console.WriteLine(e.ToString());
             return "NoData";
+        }
+    }
+
+    //---------------------------------------SONGS---------------------------------------
+
+    public void getSongID(int album_id, ref List<int> songs)
+    {
+        try
+        {
+            string SqlSongString = "SELECT Song_ID FROM Songs WHERE Album_ID = @id";
+            SQLiteCommand SongCommand = new SQLiteCommand(SqlSongString, connection);
+            SongCommand.Parameters.AddWithValue("@id", album_id);
+
+            var reader = SongCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                songs.Add((int)reader.GetInt32(0));
+            }
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
         }
     }
 }

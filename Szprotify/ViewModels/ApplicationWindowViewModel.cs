@@ -11,19 +11,30 @@ namespace Szprotify.ViewModels;
 public class ApplicationWindowViewModel : ViewModelBase
 {
     public AvaloniaList<AlbumViewModel> SearchResults { get; } = new();
+    public AvaloniaList<SongViewModel> SongResults { get; } = new();
     public UserData user = default!;
     public string[] lines = default!;
     public List<int> Albums = new List<int>();
+    public List<int> Songs = new List<int>();
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
     {
         //SearchResults.Add(new AlbumViewModel("Infected", "STARSET", "3:08"));
         //SearchResults.Add(new AlbumViewModel("My Heart I Surrender", "I Prevail", "3:27"));
 
         connect.getAlbumID(connect.getId(username),ref Albums);
+        foreach (int Album_id in Albums)
+        {
+            connect.getSongID(Album_id,ref Songs);
+        }
 
         foreach (int Album_id in Albums)
         {
             SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27"));
+        }
+
+        foreach (int Song_id in Songs)
+        {
+            SongResults.Add(new SongViewModel("test", "test", "test"));
         }
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 

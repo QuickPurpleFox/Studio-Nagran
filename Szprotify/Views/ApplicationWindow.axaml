@@ -93,9 +93,33 @@
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Songs">
-                        <TextBlock Classes="Caption" 
-                                    Text="Hello from the second tab!"
-                                    Margin="10" />
+                        <StackPanel>
+                        <Grid Margin= "10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="1"
+                                    Classes="Caption" 
+                                    Text="{Binding TitleBoxText}" 
+                                    TextAlignment="Left"/>
+                            <TextBlock Grid.Column="2"
+                                    Classes="Caption" 
+                                    Text="{Binding ArtistBoxText}" 
+                                    TextAlignment="Center"/>
+                            <TextBlock Grid.Column="3"
+                                    Classes="Caption" 
+                                    Text="{Binding TimeBoxText}" 
+                                    TextAlignment="Right"/>
+                        </Grid>
+                    <Border Height="1" Background="Black" />
+                    <ListBox Items="{Binding SongResults}"  
+                            Background="Transparent" 
+                            Margin="0 20">
+                    </ListBox>
+                    </StackPanel>
                 </TabItem>
                 <TabItem Header="Artist">
                         <TextBlock Classes="Caption" 
