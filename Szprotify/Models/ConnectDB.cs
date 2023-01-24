@@ -3,6 +3,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Data;
+using System.Collections.Generic;
 
 /*
 *nohup sqlitebrowser &
@@ -184,6 +185,80 @@ public class ConnectDB
         {
             Console.WriteLine(e.ToString());
             return -1;
+        }
+    }
+
+    public void getAlbumID(int id, ref List<int> albums)
+    {
+        try
+        {
+            string SqlAlbumString = "SELECT Album_ID FROM Assign_albums WHERE User_ID = @id";
+            SQLiteCommand AlbumCommand = new SQLiteCommand(SqlAlbumString, connection);
+            AlbumCommand.Parameters.AddWithValue("@id", id);
+
+            var reader = AlbumCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                albums.Add((int)reader.GetInt32(0));
+            }
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
+
+    public string getAlbumName(int album_id)
+    {
+        try
+        {
+            string SqlAlbumNameString = "SELECT Album_Title FROM Albums WHERE Album_ID = @id";
+            SQLiteCommand IdCommand = new SQLiteCommand(SqlAlbumNameString, connection);
+            IdCommand.Parameters.AddWithValue("@id", album_id);
+
+            string AlbumName = Convert.ToString(IdCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return AlbumName;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+
+    public string getAlbumArtist_id(int album_id)
+    {
+        try
+        {
+            string SqlAlbumArtistString = "SELECT Author_ID FROM Albums WHERE Album_ID = @id";
+            SQLiteCommand ArtistCommand = new SQLiteCommand(SqlAlbumArtistString, connection);
+            ArtistCommand.Parameters.AddWithValue("@id", album_id);
+
+            int AlbumArtist_id = Convert.ToInt32(ArtistCommand.ExecuteScalar());
+            return getAlbumArtist(AlbumArtist_id);
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+
+    public string getAlbumArtist(int albumartist_id)
+    {
+        try
+        {
+            string SqlAlbumArtistString = "SELECT Stage_name FROM Authors WHERE Author_ID = @id";
+            SQLiteCommand ArtistCommand = new SQLiteCommand(SqlAlbumArtistString, connection);
+            ArtistCommand.Parameters.AddWithValue("@id", albumartist_id);
+
+            String AlbumArtist = Convert.ToString(ArtistCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return AlbumArtist;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
         }
     }
 }

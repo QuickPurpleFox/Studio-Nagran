@@ -1,6 +1,7 @@
 using System;
 using System.Reactive;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Avalonia.Collections;
 using ReactiveUI;
 using System.Windows.Input;
@@ -12,10 +13,18 @@ public class ApplicationWindowViewModel : ViewModelBase
     public AvaloniaList<AlbumViewModel> SearchResults { get; } = new();
     public UserData user = default!;
     public string[] lines = default!;
+    public List<int> Albums = new List<int>();
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
     {
-        SearchResults.Add(new AlbumViewModel("Infected", "STARSET", "3:08"));
-        SearchResults.Add(new AlbumViewModel("My Heart I Surrender", "I Prevail", "3:27"));
+        //SearchResults.Add(new AlbumViewModel("Infected", "STARSET", "3:08"));
+        //SearchResults.Add(new AlbumViewModel("My Heart I Surrender", "I Prevail", "3:27"));
+
+        connect.getAlbumID(connect.getId(username),ref Albums);
+
+        foreach (int Album_id in Albums)
+        {
+            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27"));
+        }
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
             if (user.Role == "Admin")
