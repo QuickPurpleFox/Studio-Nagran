@@ -12,7 +12,7 @@ public class AlbumViewModel : ViewModelBase
     {
         DataTitle = Title;
         DataAlbum = Album;
-        DataTime = Time;
+        SongsCount = Time;
     }
     // binding button
     private String datatitle = String.Empty;
@@ -27,10 +27,10 @@ public class AlbumViewModel : ViewModelBase
         get => dataalbum;
         set => this.RaiseAndSetIfChanged(ref dataalbum, value);
     }
-    private String datatime = String.Empty;
-    public String DataTime
+    private String songscount = String.Empty;
+    public String SongsCount
     {
-        get => datatime;
-        set => this.RaiseAndSetIfChanged(ref datatime, value);
+        get => songscount;
+        set => this.RaiseAndSetIfChanged(ref songscount, value);
     }
 }

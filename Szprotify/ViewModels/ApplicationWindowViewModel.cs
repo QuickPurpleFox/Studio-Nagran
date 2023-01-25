@@ -34,8 +34,10 @@ public class ApplicationWindowViewModel : ViewModelBase
 
         foreach (int Song_id in Songs)
         {
-            SongResults.Add(new SongViewModel("test", "test", "test"));
+            SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
         }
+
+        //SongResults.Clear();
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
             if (user.Role == "Admin")

@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="0">
-            <Image Width="40" Stretch="Uniform" Source="../Assets/STARSET_INFECTED.jpg" />
+            <Image Width="40" Stretch="Uniform" Source="D:\Studio_Nagran\Studio-Nagran\DataBase\DIVISIONS_STARSET.jpg" />
             <TextBlock Text="{Binding DataTitle}"
                     VerticalAlignment="Center"/>
         </StackPanel>
@@ -28,7 +28,7 @@
                     VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="2">
-            <TextBlock Text="{Binding DataTime}"
+            <TextBlock Text="{Binding SongsCount}"
                     TextAlignment="Right"
                     VerticalAlignment="Center"/>
         </StackPanel>

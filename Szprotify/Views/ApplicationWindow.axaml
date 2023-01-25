@@ -61,7 +61,7 @@
                 </Border>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Border Classes="Card">
+                <Border Classes="Card" Height="550">
                 <TabControl Margin="0 5">
                 <TabItem Header="Albums" HorizontalContentAlignment="Center">
                     <StackPanel>
@@ -86,7 +86,9 @@
                                     TextAlignment="Right"/>
                         </Grid>
                     <Border Height="1" Background="Black" />
-                    <ListBox Items="{Binding SearchResults}"  
+                    <ListBox Items="{Binding SearchResults}" 
+                            SelectionMode="Single,AlwaysSelected" 
+                            SelectedIndex="{Binding SelectedAlbum}"
                             Background="Transparent" 
                             Margin="0 20">
                     </ListBox>

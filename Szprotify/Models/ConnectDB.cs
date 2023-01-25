@@ -286,4 +286,58 @@ public class ConnectDB
             Console.WriteLine(e.ToString());
         }
     }
+
+    public string getSongName(int song_id)
+    {
+        try
+        {
+            string SqlSongNameString = "SELECT S_Title FROM Songs WHERE Song_ID = @id";
+            SQLiteCommand SongNameCommand = new SQLiteCommand(SqlSongNameString, connection);
+            SongNameCommand.Parameters.AddWithValue("@id", song_id);
+
+            String AlbumArtist = Convert.ToString(SongNameCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return AlbumArtist;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+    
+    public string getSongAlbum(int song_id)
+    {
+        try
+        {
+            string SqlSongAlbumString = "SELECT Album_ID FROM Songs WHERE Song_ID = @id";
+            SQLiteCommand SongAlbumCommand = new SQLiteCommand(SqlSongAlbumString, connection);
+            SongAlbumCommand.Parameters.AddWithValue("@id", song_id);
+
+            int Album_id = Convert.ToInt32(SongAlbumCommand.ExecuteScalar());
+            return getAlbumName(Album_id);
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+
+    public string getSongDuration(int song_id)
+    {
+        try
+        {
+            string SqlSongDurationString = "SELECT Duration FROM Songs WHERE Song_ID = @id";
+            SQLiteCommand SongDurationCommand = new SQLiteCommand(SqlSongDurationString, connection);
+            SongDurationCommand.Parameters.AddWithValue("@id", song_id);
+
+            String SongDuration = Convert.ToString(SongDurationCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return SongDuration;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
 }
