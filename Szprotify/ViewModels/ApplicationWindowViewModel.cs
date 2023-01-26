@@ -16,8 +16,10 @@ public class ApplicationWindowViewModel : ViewModelBase
     public string[] lines = default!;
     public List<int> Albums = new List<int>();
     public List<int> Songs = new List<int>();
+    public ConnectDB connect = default!;
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
     {
+        this.connect = connect;
         //SearchResults.Add(new AlbumViewModel("Infected", "STARSET", "3:08"));
         //SearchResults.Add(new AlbumViewModel("My Heart I Surrender", "I Prevail", "3:27"));
         
@@ -38,8 +40,11 @@ public class ApplicationWindowViewModel : ViewModelBase
             SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
         }
         */
+        foreach (int Album_id in Albums)
+        {
+            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27"));
+        }
         populateSongs(connect);
-        //SongResults.Clear();
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
             if (user.Role == "Admin")
@@ -118,18 +123,15 @@ public class ApplicationWindowViewModel : ViewModelBase
         set
         {
             this.RaiseAndSetIfChanged(ref selectedalbum, value);
-            SongResults.Clear(); 
+            SongResults.Clear();
+            populateSongs(connect);
         }
     }
 
     public void populateSongs(ConnectDB connect)
     {
+        Songs.Clear();
         connect.getSongID(Albums[SelectedAlbum],ref Songs);
-
-        foreach (int Album_id in Albums)
-        {
-            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27"));
-        }
 
         foreach (int Song_id in Songs)
         {
