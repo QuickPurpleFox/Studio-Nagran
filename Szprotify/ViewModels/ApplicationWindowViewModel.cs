@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Reactive;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ public class ApplicationWindowViewModel : ViewModelBase
     public List<int> Songs = new List<int>();
     public ConnectDB connect = default!;
     public Task<string[]?> CoverPathAsync = default!;
+    public string CoverPath = default!;
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username, Views.ApplicationWindow ApplicationWindow)
     {
         this.connect = connect;
@@ -87,10 +89,10 @@ public class ApplicationWindowViewModel : ViewModelBase
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a file";
             openFileDialog.InitialFileName = "C:\\";
-            openFileDialog.Filters.Add(new FileDialogFilter { Name = "All files", Extensions = {"*.jpg"}});
+            openFileDialog.Filters.Add(new FileDialogFilter { Name = "Jpeg files", Extensions = {"jpg"}});
             CoverPathAsync = openFileDialog.ShowAsync(ApplicationWindow);
             var UwU = CoverPathAsync.Result;
-            PrintUsername = UwU[0];
+            CoverPath = Path.GetFileName(UwU[0]);
         });    
     }
     // binding button
