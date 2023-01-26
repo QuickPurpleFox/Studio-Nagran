@@ -362,7 +362,7 @@ public class ConnectDB
 
     //--------------------------------------Artists--------------------------------
 
-    public void getArtistID(ref List<String> artists)
+    public void getArtistName(ref List<String> artists)
     {
         try
         {
@@ -378,6 +378,45 @@ public class ConnectDB
         catch (SQLiteException e)
         {
             Console.WriteLine(e.ToString());
+        }
+    }
+
+    public bool addAlbum(string EntryCoverPath, string EntryAlbumName, string EntrySelectedArtist)
+    {
+        try
+        {
+            string SqlRegister = "INSERT INTO Albums (Album_Title, Album_Cover, Author_ID) VALUES (@EntryAlbumName, @EntryCoverPath, @EntrySelectedArtist)";
+            SQLiteCommand registercommand = new SQLiteCommand(SqlRegister, connection);
+
+            registercommand.Parameters.AddWithValue("@EntryAlbumName", EntryAlbumName);
+            registercommand.Parameters.AddWithValue("@EntryCoverPath", EntryCoverPath);
+            registercommand.Parameters.AddWithValue("@EntrySelectedArtist", getArtistID(EntrySelectedArtist));
+
+            registercommand.ExecuteScalar();
+            return true;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
+    }
+
+    public int getArtistID(String Artist_Name)
+    {
+        try
+        {
+            string SqlArtistString = "SELECT Author_ID FROM Authors WHERE Stage_name = @name";
+            SQLiteCommand ArtistCommand = new SQLiteCommand(SqlArtistString, connection);
+            ArtistCommand.Parameters.AddWithValue("@name", Artist_Name);
+
+            int Author_id = Convert.ToInt32(ArtistCommand.ExecuteScalar());
+            return Author_id;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return 0;
         }
     }
 }

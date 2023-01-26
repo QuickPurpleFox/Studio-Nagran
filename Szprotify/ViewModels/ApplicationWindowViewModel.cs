@@ -27,7 +27,7 @@ public class ApplicationWindowViewModel : ViewModelBase
     {
         this.connect = connect;
         connect.getAlbumID(connect.getId(username),ref Albums);
-        connect.getArtistID(ref ArtistsName);
+        connect.getArtistName(ref ArtistsName);
         foreach (int Album_id in Albums)
         {
             SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
@@ -98,9 +98,46 @@ public class ApplicationWindowViewModel : ViewModelBase
             var destinationPath = Path.Combine("D:\\Studio_Nagran\\Studio-Nagran\\DataBase", Path.GetFileName(UwU[0]));
             File.Copy(UwU[0],destinationPath);
         });  
-        Artists = ArtistsName;  
+        Artists = ArtistsName; 
+
+        AddAlbum = ReactiveCommand.Create(() =>
+        {
+            if (CoverPath == default!)
+            {
+                CoverPath = "STOCK_EMPTY_COVER.jpg";
+            }
+            connect.addAlbum(CoverPath, EntryAlbumName, SelectedArtist);
+        });
+         
     }
     // binding button
+    private string entryalbumname = string.Empty;
+    public ICommand AddAlbum {get; }
+    public string EntryAlbumName
+    {
+        get
+        {
+            return entryalbumname;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref entryalbumname, value);
+            if (EntryAlbumName.Length >= 4 && SelectedArtist != String.Empty)
+            {
+                EnableAdd = true;
+            }
+            else
+            {
+                EnableAdd = false;
+            }
+        }
+    }
+    private bool enableadd = false;
+    public bool EnableAdd
+    {
+        get => enableadd;
+        set => this.RaiseAndSetIfChanged(ref enableadd, value);
+    }
     public ICommand ShopButton {get; }
     public ICommand AlbumCoverPath {get; }
     public ICommand PolishLaunguage {get; } = default!;
@@ -155,6 +192,15 @@ public class ApplicationWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref artists, value);
     }
 
+    private String selectedartist = String.Empty;
+    public String SelectedArtist
+    {
+        get => selectedartist;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref selectedartist, value);
+        }
+    }
 
 
 
