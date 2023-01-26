@@ -20,8 +20,9 @@ public class ApplicationWindowViewModel : ViewModelBase
     {
         //SearchResults.Add(new AlbumViewModel("Infected", "STARSET", "3:08"));
         //SearchResults.Add(new AlbumViewModel("My Heart I Surrender", "I Prevail", "3:27"));
-
+        
         connect.getAlbumID(connect.getId(username),ref Albums);
+        /*
         foreach (int Album_id in Albums)
         {
             connect.getSongID(Album_id,ref Songs);
@@ -36,7 +37,8 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
         }
-
+        */
+        populateSongs(connect);
         //SongResults.Clear();
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
@@ -47,7 +49,8 @@ public class ApplicationWindowViewModel : ViewModelBase
             else
             {
                 IsVisibleAdmin = false;
-            }       
+            }
+        PrintUsername = "User: "+user.Username;     
         ChangeTheme = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
         {
             StyleManager.Theme.Magma => StyleManager.Theme.Rust,
@@ -56,6 +59,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         }));
         PolishLaunguage = ReactiveCommand.Create(() =>
         {
+            PrintUsername = "Użytkownik: "+user.Username;
             lines = System.IO.File.ReadAllLines(@"Assets/pl_pl.txt");
             //change language to polish
             SwitchThemeButton = lines[0];
@@ -70,6 +74,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         });
         EnglishLaunguage = ReactiveCommand.Create(() =>
         {
+            PrintUsername = "User: "+user.Username;
             lines = System.IO.File.ReadAllLines(@"Assets/en_us.txt");
             //change language to English
             SwitchThemeButton = lines[0];
@@ -92,12 +97,11 @@ public class ApplicationWindowViewModel : ViewModelBase
     {
         get
         {
-            return "Hello: "+SelectedAlbum.DataAlbum;
+            return printusername;
         }
         set
         {
             this.RaiseAndSetIfChanged(ref printusername, value);
-            PrintUsername = user.Username;
         }
     }
     private bool isvisibleadmin = false;
@@ -107,12 +111,38 @@ public class ApplicationWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref isvisibleadmin, value);
     }
 
-    AlbumViewModel selectedalbum = default!;
-    public AlbumViewModel SelectedAlbum
+    int selectedalbum = default!;
+    public int SelectedAlbum
     {
         get => selectedalbum;
-        set => this.RaiseAndSetIfChanged(ref selectedalbum, value);
+        set
+        {
+            this.RaiseAndSetIfChanged(ref selectedalbum, value);
+            SongResults.Clear(); 
+        }
     }
+
+    public void populateSongs(ConnectDB connect)
+    {
+        connect.getSongID(Albums[SelectedAlbum],ref Songs);
+
+        foreach (int Album_id in Albums)
+        {
+            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27"));
+        }
+
+        foreach (int Song_id in Songs)
+        {
+            SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
+        }
+    }
+
+
+
+
+
+
+
 
 
 
