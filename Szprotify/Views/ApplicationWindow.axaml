@@ -46,10 +46,6 @@
                                     Command="{Binding ShopButton}"/>
                         </Grid>
                         <Grid>
-                            <Button Content="{Binding AddAlbumButtonText}" 
-                                    Command="{Binding AddAlbumButton}"/>
-                        </Grid>
-                        <Grid>
                             <Button Content="{Binding UserManagementButtonText}" 
                                     Command="{Binding ManagementButton}"
                                     IsVisible="{Binding IsVisibleAdmin}"/>
