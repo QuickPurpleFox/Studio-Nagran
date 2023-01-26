@@ -358,4 +358,26 @@ public class ConnectDB
             return "NoData";
         }
     }
+
+
+    //--------------------------------------Artists--------------------------------
+
+    public void getArtistID(ref List<String> artists)
+    {
+        try
+        {
+            string SqlArtistString = "SELECT Stage_name FROM Authors";
+            SQLiteCommand ArtistCommand = new SQLiteCommand(SqlArtistString, connection);
+
+            var reader = ArtistCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                artists.Add((String)reader.GetString(0));
+            }
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
 }

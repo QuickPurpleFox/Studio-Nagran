@@ -19,14 +19,15 @@ public class ApplicationWindowViewModel : ViewModelBase
     public string[] lines = default!;
     public List<int> Albums = new List<int>();
     public List<int> Songs = new List<int>();
-    public List<String> Artist = new List<String>();
     public ConnectDB connect = default!;
     public Task<string[]?> CoverPathAsync = default!;
     public string CoverPath = default!;
+    public List<String> ArtistsName = new List<String>();
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username, Views.ApplicationWindow ApplicationWindow)
     {
         this.connect = connect;
         connect.getAlbumID(connect.getId(username),ref Albums);
+        connect.getArtistID(ref ArtistsName);
         foreach (int Album_id in Albums)
         {
             SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
@@ -96,7 +97,8 @@ public class ApplicationWindowViewModel : ViewModelBase
             CoverPath = Path.GetFileName(UwU[0]);
             var destinationPath = Path.Combine("D:\\Studio_Nagran\\Studio-Nagran\\DataBase", Path.GetFileName(UwU[0]));
             File.Copy(UwU[0],destinationPath);
-        });    
+        });  
+        Artists = ArtistsName;  
     }
     // binding button
     public ICommand ShopButton {get; }
@@ -144,6 +146,13 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
         }
+    }
+
+    public List<string> artists = default!;
+    public List<string> Artists
+    {
+        get => artists;
+        set => this.RaiseAndSetIfChanged(ref artists, value);
     }
 
 

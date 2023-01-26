@@ -99,11 +99,11 @@
                             HorizontalAlignment="Center" 
                             Watermark="Album Name" 
                             Text="{Binding EntryAlbumName}"/>
-                        <TextBox Margin="20" 
+                        <ComboBox 
+                            Items="{Binding Artists}" 
+                            SelectedItem="{Binding SelectedArtist}"
                             Width="150"
-                            HorizontalAlignment="Center" 
-                            Watermark="Artist" 
-                            Text="{Binding EntryArtistName}"/>
+                            Height="39"/>
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
