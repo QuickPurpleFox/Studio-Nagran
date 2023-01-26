@@ -81,7 +81,7 @@ public class ApplicationWindowViewModel : ViewModelBase
             TitleBoxText = lines[6];
             TimeBoxText = lines[7];
             ArtistBoxText = lines[8];
-        });      
+        });    
     }
     // binding button
     public ICommand PolishLaunguage {get; } = default!;
@@ -92,7 +92,7 @@ public class ApplicationWindowViewModel : ViewModelBase
     {
         get
         {
-            return "Hello: "+user.Username;
+            return "Hello: "+SelectedAlbum.DataAlbum;
         }
         set
         {
@@ -107,6 +107,12 @@ public class ApplicationWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref isvisibleadmin, value);
     }
 
+    AlbumViewModel selectedalbum = default!;
+    public AlbumViewModel SelectedAlbum
+    {
+        get => selectedalbum;
+        set => this.RaiseAndSetIfChanged(ref selectedalbum, value);
+    }
 
 
 
