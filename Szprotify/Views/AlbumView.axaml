@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="0">
-            <Image Width="40" Stretch="Uniform" Source="D:\Studio_Nagran\Studio-Nagran\DataBase\DIVISIONS_STARSET.jpg" />
+            <Image Width="40" Stretch="Uniform" Source="{Binding SourceCover}" />
             <TextBlock Text="{Binding DataTitle}"
                     VerticalAlignment="Center"/>
         </StackPanel>

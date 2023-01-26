@@ -1,18 +1,22 @@
 using System;
+using static System.Uri;
 using System.Reactive;
 using System.Collections.ObjectModel;
 using ReactiveUI;
+using Avalonia.Media.Imaging;
+using System.IO;
 
 namespace Szprotify.ViewModels;
 
 public class AlbumViewModel : ViewModelBase
 {
     //private readonly Album _album;
-    public AlbumViewModel(String Title, String Album, String Time)
+    public AlbumViewModel(String Title, String Album, String Time, String cover)
     {
         DataTitle = Title;
         DataAlbum = Album;
         SongsCount = Time;
+        SourceCover = new Bitmap(File.OpenRead("D:\\Studio_Nagran\\Studio-Nagran\\DataBase\\"+cover));
     }
     // binding button
     private String datatitle = String.Empty;
@@ -32,5 +36,11 @@ public class AlbumViewModel : ViewModelBase
     {
         get => songscount;
         set => this.RaiseAndSetIfChanged(ref songscount, value);
+    }
+    private Bitmap sourcecover = default!;
+    public Bitmap SourceCover
+    {
+        get => sourcecover;
+        set => this.RaiseAndSetIfChanged(ref sourcecover, value);
     }
 }

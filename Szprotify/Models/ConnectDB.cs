@@ -265,6 +265,24 @@ public class ConnectDB
         }
     }
 
+    public string getAlbumCover(int album_id)
+    {
+        try
+        {
+            string SqlAlbumCoverString = "SELECT Album_Cover FROM Albums WHERE Album_ID = @id";
+            SQLiteCommand CoverCommand = new SQLiteCommand(SqlAlbumCoverString, connection);
+            CoverCommand.Parameters.AddWithValue("@id", album_id);
+
+            String AlbumCover = Convert.ToString(CoverCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return AlbumCover;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+
     //---------------------------------------SONGS---------------------------------------
 
     public void getSongID(int album_id, ref List<int> songs)
