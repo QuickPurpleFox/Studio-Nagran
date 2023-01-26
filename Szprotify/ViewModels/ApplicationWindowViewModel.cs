@@ -3,8 +3,10 @@ using System.Reactive;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Avalonia.Collections;
+using Avalonia.Controls;
 using ReactiveUI;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace Szprotify.ViewModels;
 
@@ -17,7 +19,8 @@ public class ApplicationWindowViewModel : ViewModelBase
     public List<int> Albums = new List<int>();
     public List<int> Songs = new List<int>();
     public ConnectDB connect = default!;
-    public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username)
+    public Task<string[]?> CoverPathAsync = default!;
+    public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username, Views.ApplicationWindow ApplicationWindow)
     {
         this.connect = connect;
         connect.getAlbumID(connect.getId(username),ref Albums);
@@ -77,10 +80,22 @@ public class ApplicationWindowViewModel : ViewModelBase
         ShopButton = ReactiveCommand.Create(() =>
         {
             Console.Write("Test\n");
+        });
+
+        AlbumCoverPath = ReactiveCommand.Create(() =>
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a file";
+            openFileDialog.InitialFileName = "C:\\";
+            openFileDialog.Filters.Add(new FileDialogFilter { Name = "All files", Extensions = {"*.jpg"}});
+            CoverPathAsync = openFileDialog.ShowAsync(ApplicationWindow);
+            var UwU = CoverPathAsync.Result;
+            PrintUsername = UwU[0];
         });    
     }
     // binding button
     public ICommand ShopButton {get; }
+    public ICommand AlbumCoverPath {get; }
     public ICommand PolishLaunguage {get; } = default!;
     public ICommand EnglishLaunguage {get; } = default!;
     public ReactiveCommand<Unit, Unit> ChangeTheme { get; } = default!;

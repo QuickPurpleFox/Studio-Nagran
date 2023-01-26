@@ -13,6 +13,7 @@ namespace Szprotify.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     public ConnectDB connect;
+    Views.ApplicationWindow ApplicationWindow = default!;
     public MainWindowViewModel(StyleManager styles)
     {
         connect = new ConnectDB();
@@ -59,9 +60,9 @@ public class MainWindowViewModel : ViewModelBase
     }
     private void MethodToOpenApplication()
     {
-        var ApplicationWindow = new Views.ApplicationWindow();
+        ApplicationWindow = new Views.ApplicationWindow();
         var styles = new StyleManager(ApplicationWindow);
-        ApplicationWindow.DataContext = new ApplicationWindowViewModel(connect, styles, EntryUsername);
+        ApplicationWindow.DataContext = new ApplicationWindowViewModel(connect, styles, EntryUsername, ApplicationWindow);
         ApplicationWindow.Show();
     }
 
