@@ -72,9 +72,15 @@ public class ApplicationWindowViewModel : ViewModelBase
             TitleBoxText = lines[6];
             TimeBoxText = lines[7];
             ArtistBoxText = lines[8];
+        });
+
+        ShopButton = ReactiveCommand.Create(() =>
+        {
+            Console.Write("Test\n");
         });    
     }
     // binding button
+    public ICommand ShopButton {get; }
     public ICommand PolishLaunguage {get; } = default!;
     public ICommand EnglishLaunguage {get; } = default!;
     public ReactiveCommand<Unit, Unit> ChangeTheme { get; } = default!;
