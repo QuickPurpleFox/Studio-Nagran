@@ -89,10 +89,12 @@ public class ApplicationWindowViewModel : ViewModelBase
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a file";
             openFileDialog.InitialFileName = "C:\\";
-            openFileDialog.Filters.Add(new FileDialogFilter { Name = "Jpeg files", Extensions = {"jpg"}});
+            openFileDialog.Filters.Add(new FileDialogFilter { Name = "jpeg files", Extensions = {"jpg"}});
             CoverPathAsync = openFileDialog.ShowAsync(ApplicationWindow);
             var UwU = CoverPathAsync.Result;
-            CoverPath = Path.GetFileName(UwU[0]);
+            PrintUsername = Path.GetFileName(UwU[0]);
+            var destinationPath = Path.Combine("D:\\Studio_Nagran\\Studio-Nagran\\DataBase", Path.GetFileName(UwU[0]));
+            File.Copy(UwU[0],destinationPath);
         });    
     }
     // binding button

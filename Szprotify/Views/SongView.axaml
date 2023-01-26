@@ -18,7 +18,6 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="0">
-            <Image Width="40" Stretch="Uniform" Source="../Assets/STARSET_INFECTED.jpg" />
             <TextBlock Text="{Binding DataTitle}"
                     VerticalAlignment="Center"/>
         </StackPanel>
