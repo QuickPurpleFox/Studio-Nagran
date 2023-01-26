@@ -19,6 +19,7 @@ public class ApplicationWindowViewModel : ViewModelBase
     public string[] lines = default!;
     public List<int> Albums = new List<int>();
     public List<int> Songs = new List<int>();
+    public List<String> Artist = new List<String>();
     public ConnectDB connect = default!;
     public Task<string[]?> CoverPathAsync = default!;
     public string CoverPath = default!;
@@ -92,7 +93,7 @@ public class ApplicationWindowViewModel : ViewModelBase
             openFileDialog.Filters.Add(new FileDialogFilter { Name = "jpeg files", Extensions = {"jpg"}});
             CoverPathAsync = openFileDialog.ShowAsync(ApplicationWindow);
             var UwU = CoverPathAsync.Result;
-            PrintUsername = Path.GetFileName(UwU[0]);
+            CoverPath = Path.GetFileName(UwU[0]);
             var destinationPath = Path.Combine("D:\\Studio_Nagran\\Studio-Nagran\\DataBase", Path.GetFileName(UwU[0]));
             File.Copy(UwU[0],destinationPath);
         });    
