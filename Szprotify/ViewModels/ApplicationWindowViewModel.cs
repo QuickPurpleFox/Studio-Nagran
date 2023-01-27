@@ -24,6 +24,7 @@ public class ApplicationWindowViewModel : ViewModelBase
     public Task<string[]?> CoverPathAsync = default!;
     public string CoverPath = default!;
     public List<String> ArtistsName = new List<String>();
+    public Interaction<ShopViewModel, AlbumViewModel?> ShowDialog { get; }
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username, Views.ApplicationWindow ApplicationWindow)
     {
         this.username = username;
@@ -83,11 +84,7 @@ public class ApplicationWindowViewModel : ViewModelBase
             TimeBoxText = lines[7];
             ArtistBoxText = lines[8];
         });
-
-        ShopButton = ReactiveCommand.Create(() =>
-        {
-            Console.Write("Test\n");
-        });
+        
 
         AlbumCoverPath = ReactiveCommand.Create(() =>
         {
@@ -121,6 +118,23 @@ public class ApplicationWindowViewModel : ViewModelBase
             connect.deleteAlbum(Albums[SelectedAlbum]);
             SearchResults.Clear();
             populateAlbums(connect);
+        });
+
+
+        ShowDialog = new Interaction<ShopViewModel, AlbumViewModel?>();
+        ShopButton = ReactiveCommand.Create(() =>
+        {
+            //var store = new ShopViewModel();
+
+            //var result = ShowDialog.Handle(store);
+            // Create the dialog window
+            var dialog = new Views.ShopView();
+
+            // Create the view model for the dialog
+            var viewModel = new ShopViewModel();
+
+            // Show the dialog
+            dialog.ShowDialog(ApplicationWindow);
         });
          
     }
