@@ -11,11 +11,11 @@ namespace Szprotify.ViewModels;
 public class AlbumViewModel : ViewModelBase
 {
     //private readonly Album _album;
-    public AlbumViewModel(String Title, String Album, String Time, String cover)
+    public AlbumViewModel(String Title, String Album, String count, String cover)
     {
         DataTitle = Title;
         DataAlbum = Album;
-        SongsCount = Time;
+        SongsCount = count;
         SourceCover = new Bitmap(File.OpenRead("D:\\Studio_Nagran\\Studio-Nagran\\DataBase\\"+cover));
     }
     // binding button

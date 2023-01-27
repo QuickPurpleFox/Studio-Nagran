@@ -20,11 +20,13 @@ public class ApplicationWindowViewModel : ViewModelBase
     public List<int> Albums = new List<int>();
     public List<int> Songs = new List<int>();
     public ConnectDB connect = default!;
+    public string username = string.Empty;
     public Task<string[]?> CoverPathAsync = default!;
     public string CoverPath = default!;
     public List<String> ArtistsName = new List<String>();
     public ApplicationWindowViewModel(ConnectDB connect, StyleManager styles, string username, Views.ApplicationWindow ApplicationWindow)
     {
+        this.username = username;
         this.connect = connect;
         connect.getAlbumID(connect.getId(username),ref Albums);
         connect.getArtistName(ref ArtistsName);
@@ -32,6 +34,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
         }
+        //populateAlbums(connect);
         populateSongs(connect);
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
@@ -107,12 +110,24 @@ public class ApplicationWindowViewModel : ViewModelBase
                 CoverPath = "STOCK_EMPTY_COVER.jpg";
             }
             connect.addAlbum(CoverPath, EntryAlbumName, SelectedArtist);
+            //connect.assignAlbum(EntryAlbumName, connect.getId(username));
+            connect.assignAlbum(connect.getAlbumIDfromName(EntryAlbumName), connect.getId(username));
+            SearchResults.Clear();
+            populateAlbums(connect);
+        });
+
+        DeleteAlbum = ReactiveCommand.Create(() =>
+        {
+            connect.deleteAlbum(Albums[SelectedAlbum]);
+            SearchResults.Clear();
+            populateAlbums(connect);
         });
          
     }
     // binding button
     private string entryalbumname = string.Empty;
     public ICommand AddAlbum {get; }
+    public ICommand DeleteAlbum {get; }
     public string EntryAlbumName
     {
         get
@@ -182,6 +197,17 @@ public class ApplicationWindowViewModel : ViewModelBase
         foreach (int Song_id in Songs)
         {
             SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
+        }
+    }
+
+    public void populateAlbums(ConnectDB connect)
+    {
+        Albums.Clear();
+        connect.getAlbumID(connect.getId(username),ref Albums);
+
+        foreach (int Album_id in Albums)
+        {
+            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
         }
     }
 

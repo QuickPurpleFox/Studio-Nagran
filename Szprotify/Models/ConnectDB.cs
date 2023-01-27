@@ -191,6 +191,42 @@ public class ConnectDB
 
     //---------------------------------------ALBUMS---------------------------------------
 
+    public int getAlbumIDfromName(string name)
+    {
+        try
+        {
+            string SqlAlbumString = "SELECT Album_ID FROM Albums WHERE Album_Title = @name";
+            SQLiteCommand AlbumCommand = new SQLiteCommand(SqlAlbumString, connection);
+            AlbumCommand.Parameters.AddWithValue("@name", name);
+
+            int AlbumId = Convert.ToInt32(AlbumCommand.ExecuteScalar());
+            return AlbumId;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return 0;
+        }
+    }
+
+    public bool deleteAlbum(int id)
+    {
+        try
+        {
+            string SqlAlbumString = "DELETE FROM Albums WHERE Album_ID = @Album_ID";
+            SQLiteCommand AlbumCommand = new SQLiteCommand(SqlAlbumString, connection);
+            AlbumCommand.Parameters.AddWithValue("@Album_ID", id);
+
+            Boolean Albumdeleted = Convert.ToBoolean(AlbumCommand.ExecuteScalar());
+            return Albumdeleted;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
+    }
+
     public void getAlbumID(int id, ref List<int> albums)
     {
         try
@@ -417,6 +453,26 @@ public class ConnectDB
         {
             Console.WriteLine(e.ToString());
             return 0;
+        }
+    }
+
+    public bool assignAlbum(int album_id, int user_id)
+    {
+        try
+        {
+            string SqlRegister = "INSERT INTO Assign_albums (Album_ID, User_ID) VALUES (@EntryAlbumName, @id)";
+            SQLiteCommand registercommand = new SQLiteCommand(SqlRegister, connection);
+
+            registercommand.Parameters.AddWithValue("@EntryAlbumName", album_id);
+            registercommand.Parameters.AddWithValue("@id", user_id);
+
+            registercommand.ExecuteScalar();
+            return true;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
         }
     }
 }
