@@ -217,8 +217,12 @@ public class ConnectDB
             SQLiteCommand AlbumCommand = new SQLiteCommand(SqlAlbumString, connection);
             AlbumCommand.Parameters.AddWithValue("@Album_ID", id);
 
-            Boolean Albumdeleted = Convert.ToBoolean(AlbumCommand.ExecuteScalar());
-            return Albumdeleted;
+            AlbumCommand.ExecuteScalar();
+            SqlAlbumString ="DELETE FROM Assign_albums WHERE Album_ID = @Album_ID";
+            SQLiteCommand AssignCommand = new SQLiteCommand(SqlAlbumString, connection);
+            AssignCommand.Parameters.AddWithValue("@Album_ID", id);
+            AssignCommand.ExecuteScalar();
+            return true;
         }
         catch (SQLiteException e)
         {

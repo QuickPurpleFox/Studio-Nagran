@@ -130,7 +130,8 @@
                                     TextAlignment="Right"/>
                         </Grid>
                     <Border Height="1" Background="Black" />
-                    <ListBox Items="{Binding SongResults}"  
+                    <ListBox Items="{Binding SongResults}"
+                            SelectedIndex="{Binding SelectedSong}"  
                             Background="Transparent" 
                             Margin="0 20">
                     </ListBox>
