@@ -220,6 +220,7 @@ public class ApplicationWindowViewModel : ViewModelBase
     public void populateAlbums(ConnectDB connect)
     {
         Albums.Clear();
+        SearchResults.Clear();
         //connect.getAllAlbumsID(ref Albums);
         if(connect.getRole(username) == "Admin")
         {
