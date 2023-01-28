@@ -14,7 +14,7 @@ public class MainWindowViewModel : ViewModelBase
 {
     public ConnectDB connect;
     Views.ApplicationWindow ApplicationWindow = default!;
-    public MainWindowViewModel(StyleManager styles)
+    public MainWindowViewModel(StyleManager styles, Views.MainWindow window)
     {
         connect = new ConnectDB();
         OpenRegister = ReactiveCommand.Create(MethodToOpenRegister);
@@ -27,6 +27,8 @@ public class MainWindowViewModel : ViewModelBase
             if(connect.Login(EntryUsername, EntryPassword))
             {
                 MethodToOpenApplication();
+                window.Hide();
+                
             }
             else
             {

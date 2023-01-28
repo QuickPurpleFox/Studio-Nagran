@@ -19,7 +19,7 @@ public partial class App : Application
         {
             //https://www.reddit.com/r/AvaloniaUI/comments/102yss3/button_is_not_working_in_new_opened_window/
             window = new MainWindow();
-            window.DataContext = new MainWindowViewModel(new StyleManager(window));
+            window.DataContext = new MainWindowViewModel(new StyleManager(window), this.window);
             desktop.MainWindow = window;
         }
 
