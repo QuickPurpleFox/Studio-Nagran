@@ -139,8 +139,8 @@ public class ApplicationWindowViewModel : ViewModelBase
         DeleteSong = ReactiveCommand.Create(() =>
         {
             connect.deleteSong(Songs[SelectedSong]);
-            SearchResults.Clear();
-            populateAlbums(connect);
+            SongResults.Clear();
+            populateSongs(connect);
         });
 
 
