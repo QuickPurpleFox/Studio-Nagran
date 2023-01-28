@@ -29,17 +29,19 @@ public class ApplicationWindowViewModel : ViewModelBase
     {
         this.username = username;
         this.connect = connect;
-        connect.getAlbumID(connect.getId(username),ref Albums);
+        //connect.getAlbumID(connect.getId(username),ref Albums);
         connect.getArtistName(ref ArtistsName);
-        if(Albums.Count != 0)
+        if(connect.getRole(username) == "Admin")
         {
-            foreach (int Album_id in Albums)
-            {
-                SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
-            }
+            connect.getAllAlbumsID(ref Albums);
+        }
+        else
+        {
+            connect.getAlbumID(connect.getId(username),ref Albums);
         }
         if(Albums.Count != 0)
         {
+            populateAlbums(connect);
             populateSongs(connect);
         }
 
@@ -218,7 +220,14 @@ public class ApplicationWindowViewModel : ViewModelBase
     public void populateAlbums(ConnectDB connect)
     {
         Albums.Clear();
-        connect.getAlbumID(connect.getId(username),ref Albums);
+        connect.getAllAlbumsID(ref Albums);
+        /*if(user.Role == "Admin")
+        {
+            connect.getAllAlbumsID(ref Albums);
+        }else
+        {
+            connect.getAlbumID(connect.getId(username),ref Albums);
+        }*/
         if(Albums.Count != 0)
         {
             foreach (int Album_id in Albums)

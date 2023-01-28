@@ -251,6 +251,25 @@ public class ConnectDB
         }
     }
 
+    public void getAllAlbumsID(ref List<int> albums)
+    {
+        try
+        {
+            string SqlAlbumString = "SELECT Album_ID FROM Albums";
+            SQLiteCommand AlbumCommand = new SQLiteCommand(SqlAlbumString, connection);
+
+            var reader = AlbumCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                albums.Add((int)reader.GetInt32(0));
+            }
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
+
     public string getAlbumName(int album_id)
     {
         try
