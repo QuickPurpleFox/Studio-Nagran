@@ -100,7 +100,7 @@ public class ApplicationWindowViewModel : ViewModelBase
             CoverPathAsync = openFileDialog.ShowAsync(ApplicationWindow);
             var UwU = CoverPathAsync.Result;
             CoverPath = Path.GetFileName(UwU[0]);
-            var destinationPath = Path.Combine("D:\\Studio_Nagran\\Studio-Nagran\\DataBase", Path.GetFileName(UwU[0]));
+            var destinationPath = Path.Combine(@"../DataBase", Path.GetFileName(UwU[0]));//@"Assets/pl_pl.txt"
             File.Copy(UwU[0],destinationPath);
         });  
         Artists = ArtistsName; 

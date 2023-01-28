@@ -16,7 +16,7 @@ public class AlbumViewModel : ViewModelBase
         DataTitle = Title;
         DataAlbum = Album;
         SongsCount = count;
-        SourceCover = new Bitmap(File.OpenRead("D:\\Studio_Nagran\\Studio-Nagran\\DataBase\\"+cover));
+        SourceCover = new Bitmap(File.OpenRead(@"../DataBase/"+cover));
     }
     // binding button
     private String datatitle = String.Empty;
