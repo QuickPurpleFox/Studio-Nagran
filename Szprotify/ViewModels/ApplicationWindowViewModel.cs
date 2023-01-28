@@ -31,12 +31,17 @@ public class ApplicationWindowViewModel : ViewModelBase
         this.connect = connect;
         connect.getAlbumID(connect.getId(username),ref Albums);
         connect.getArtistName(ref ArtistsName);
-        foreach (int Album_id in Albums)
+        if(Albums.Count != 0)
         {
-            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
+            foreach (int Album_id in Albums)
+            {
+                SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
+            }
         }
-        //populateAlbums(connect);
-        populateSongs(connect);
+        if(Albums.Count != 0)
+        {
+            populateSongs(connect);
+        }
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
             if (user.Role == "Admin")
@@ -124,16 +129,10 @@ public class ApplicationWindowViewModel : ViewModelBase
         ShowDialog = new Interaction<ShopViewModel, AlbumViewModel?>();
         ShopButton = ReactiveCommand.Create(() =>
         {
-            //var store = new ShopViewModel();
-
-            //var result = ShowDialog.Handle(store);
-            // Create the dialog window
             var dialog = new Views.ShopView();
-
-            // Create the view model for the dialog
-            var viewModel = new ShopViewModel();
-
-            // Show the dialog
+            var CurrentTheme = styles.CurrentTheme;
+            var viewModel = new ShopViewModel(connect, user.Username, CurrentTheme, dialog);
+            dialog.DataContext = viewModel;
             dialog.ShowDialog(ApplicationWindow);
         });
          
@@ -207,10 +206,12 @@ public class ApplicationWindowViewModel : ViewModelBase
     {
         Songs.Clear();
         connect.getSongID(Albums[SelectedAlbum],ref Songs);
-
-        foreach (int Song_id in Songs)
+        if(Songs.Count != 0)
         {
-            SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
+            foreach (int Song_id in Songs)
+            {
+                SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
+            }
         }
     }
 
@@ -218,10 +219,12 @@ public class ApplicationWindowViewModel : ViewModelBase
     {
         Albums.Clear();
         connect.getAlbumID(connect.getId(username),ref Albums);
-
-        foreach (int Album_id in Albums)
+        if(Albums.Count != 0)
         {
-            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
+            foreach (int Album_id in Albums)
+            {
+                SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
+            }
         }
     }
 

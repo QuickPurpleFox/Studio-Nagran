@@ -6,26 +6,44 @@
         mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="370"
         x:Class="Szprotify.Views.ShopView"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Szprotify"
-        Width="300"
-        Height="370"
+        Title="Shop"
+        Width="650"
+        Height="400"
         CanResize="false"
         TransparencyLevelHint="AcrylicBlur"
-        Background="Transparent"
         ExtendClientAreaToDecorationsHint="True"
         WindowStartupLocation="CenterOwner" >
     
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
     <Grid>
-    <StackPanel>
-    <Menu Grid.Row="0">
-        <MenuItem Header="Switch theme" Command="{Binding ChangeTheme}" />
-    </Menu>
-    </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <TextBlock Classes="Caption" 
+                        Text="{Binding Test}" />
+        </Menu>
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="215" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Border Height="300" Classes="Card">
+                    <StackPanel>
+                        
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Border Height="300" Classes="Card">
+                    <ListBox Items="{Binding SearchResults}" 
+                            SelectionMode="Multiple" 
+                            SelectedIndex="{Binding SelectedAlbum}"
+                            Background="Transparent" 
+                            Margin="0 20"/>
+                </Border>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
