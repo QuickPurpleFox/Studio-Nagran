@@ -306,6 +306,25 @@ public class ConnectDB
         }
     }
 
+    public int getSongCount(int id)
+    {
+        try
+        {
+            string SqlAlbumString = "SELECT COUNT(*) FROM Songs WHERE Album_ID = @id";
+            SQLiteCommand AlbumCommand = new SQLiteCommand(SqlAlbumString, connection);
+            AlbumCommand.Parameters.AddWithValue("@id", id);
+
+            int SongCount = Convert.ToInt32(AlbumCommand.ExecuteScalar());
+            return SongCount;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return 0;
+        }
+    }
+
+//SELECT COUNT(*) FROM Songs WHERE Album_ID = @id
     public string getAlbumArtist(int albumartist_id)
     {
         try

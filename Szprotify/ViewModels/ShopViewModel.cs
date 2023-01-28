@@ -24,7 +24,7 @@ public class ShopViewModel : ViewModelBase
         connect.getAllAlbumsID(ref Albums);
         foreach (int Album_id in Albums)
         {
-            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
+            SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), connect.getSongCount(Album_id), connect.getAlbumCover(Album_id)));
         }
         Test = "Add album";
 

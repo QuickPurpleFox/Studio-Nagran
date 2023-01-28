@@ -11,7 +11,7 @@ namespace Szprotify.ViewModels;
 public class AlbumViewModel : ViewModelBase
 {
     //private readonly Album _album;
-    public AlbumViewModel(String Title, String Album, String count, String cover)
+    public AlbumViewModel(String Title, String Album, int count, String cover)
     {
         DataTitle = Title;
         DataAlbum = Album;
@@ -31,8 +31,8 @@ public class AlbumViewModel : ViewModelBase
         get => dataalbum;
         set => this.RaiseAndSetIfChanged(ref dataalbum, value);
     }
-    private String songscount = String.Empty;
-    public String SongsCount
+    private int songscount = 0;
+    public int SongsCount
     {
         get => songscount;
         set => this.RaiseAndSetIfChanged(ref songscount, value);

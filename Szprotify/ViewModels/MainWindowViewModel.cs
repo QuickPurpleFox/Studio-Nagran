@@ -27,7 +27,7 @@ public class MainWindowViewModel : ViewModelBase
             if(connect.Login(EntryUsername, EntryPassword))
             {
                 MethodToOpenApplication();
-                window.Hide();
+                window.Close();
                 
             }
             else
