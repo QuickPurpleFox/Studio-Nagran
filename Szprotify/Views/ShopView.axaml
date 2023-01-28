@@ -31,14 +31,14 @@
             <StackPanel Grid.Column="0">
                 <Border Height="300" Classes="Card">
                     <StackPanel>
-                        
+                        <Button Command="{Binding BuyAlbum}">Buy Album</Button>
                     </StackPanel>
                 </Border>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Border Height="300" Classes="Card">
                     <ListBox Items="{Binding SearchResults}" 
-                            SelectionMode="Multiple" 
+                            SelectionMode="Single" 
                             SelectedIndex="{Binding SelectedAlbum}"
                             Background="Transparent" 
                             Margin="0 20"/>
