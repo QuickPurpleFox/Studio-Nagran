@@ -128,6 +128,22 @@ public class ApplicationWindowViewModel : ViewModelBase
         });
 
 
+
+        AddSong = ReactiveCommand.Create(() =>
+        {
+            connect.addSong(Albums[SelectedAlbum], EntrySongName, EntrySongDuration);
+            SongResults.Clear();
+            populateSongs(connect);
+        });
+
+        DeleteSong = ReactiveCommand.Create(() =>
+        {
+            connect.deleteSong(Songs[SelectedSong]);
+            SearchResults.Clear();
+            populateAlbums(connect);
+        });
+
+
         ShowDialog = new Interaction<ShopViewModel, AlbumViewModel?>();
         ShopButton = ReactiveCommand.Create(() =>
         {
@@ -141,8 +157,12 @@ public class ApplicationWindowViewModel : ViewModelBase
     }
     // binding button
     private string entryalbumname = string.Empty;
+    private string entrysongname = string.Empty;
+    private string entrysongduration = string.Empty;
     public ICommand AddAlbum {get; }
     public ICommand DeleteAlbum {get; }
+    public ICommand AddSong {get; }
+    public ICommand DeleteSong {get; }
     public string EntryAlbumName
     {
         get
@@ -162,11 +182,47 @@ public class ApplicationWindowViewModel : ViewModelBase
             }
         }
     }
+    public string EntrySongName
+    {
+        get
+        {
+            return entrysongname;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref entrysongname, value);
+            if (entrysongname.Length >= 4)
+            {
+                EnableAddSong = true;
+            }
+            else
+            {
+                EnableAddSong = false;
+            }
+        }
+    }
+    public string EntrySongDuration
+    {
+        get
+        {
+            return entrysongduration;
+        }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref entrysongduration, value);
+        }
+    }
     private bool enableadd = false;
     public bool EnableAdd
     {
         get => enableadd;
         set => this.RaiseAndSetIfChanged(ref enableadd, value);
+    }
+    private bool enableaddsong = false;
+    public bool EnableAddSong
+    {
+        get => enableaddsong;
+        set => this.RaiseAndSetIfChanged(ref enableaddsong, value);
     }
     public ICommand ShopButton {get; }
     public ICommand AlbumCoverPath {get; }
@@ -201,6 +257,16 @@ public class ApplicationWindowViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref selectedalbum, value);
             SongResults.Clear();
             populateSongs(connect);
+        }
+    }
+
+    int selectedsong = default!;
+    public int SelectedSong
+    {
+        get => selectedsong;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref selectedsong, value);
         }
     }
 

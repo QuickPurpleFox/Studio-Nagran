@@ -517,4 +517,43 @@ public class ConnectDB
             return false;
         }
     }
+
+    public bool deleteSong(int id)
+    {
+        try
+        {
+            string SqlSongString = "DELETE FROM Songs WHERE Song_ID = @song_ID";
+            SQLiteCommand SongCommand = new SQLiteCommand(SqlSongString, connection);
+            SongCommand.Parameters.AddWithValue("@song_ID", id);
+
+            SongCommand.ExecuteScalar();
+            return true;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
+    }
+
+    public bool addSong(int album_id, string SongName, string SongDuration)
+    {
+        try
+        {
+            string SqlRegister = "INSERT INTO Songs (S_Title, Duration, Album_ID) VALUES (@title, @duration, @album_id)";
+            SQLiteCommand registercommand = new SQLiteCommand(SqlRegister, connection);
+
+            registercommand.Parameters.AddWithValue("@title", SongName);
+            registercommand.Parameters.AddWithValue("@duration", SongDuration);
+            registercommand.Parameters.AddWithValue("@album_id", album_id);
+
+            registercommand.ExecuteScalar();
+            return true;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
+    }
 }

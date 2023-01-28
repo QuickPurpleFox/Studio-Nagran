@@ -140,10 +140,36 @@
                         </Grid>
                     <Border Height="1" Background="Black" />
                     <ListBox Items="{Binding SongResults}"
+                            SelectionMode="Single,AlwaysSelected"
                             SelectedIndex="{Binding SelectedSong}"  
                             Background="Transparent" 
                             Margin="0 20">
                     </ListBox>
+                    <StackPanel Orientation="Horizontal">
+                            <Button Background="Green" 
+                                    Width="32" 
+                                    Height="32" 
+                                    Command="{Binding AddSong}" 
+                                    IsEnabled="{Binding EnableAddSong}"
+                                    IsVisible="{Binding IsVisibleAdmin}"><Image Source="../Assets/add.png" Width="30" Height="30"/></Button>
+                            <Button Background="Red" 
+                                    Width="32" 
+                                    Height="32" 
+                                    Command="{Binding DeleteSong}"
+                                    IsVisible="{Binding IsVisibleAdmin}"><Image Source="../Assets/delete.png" Width="30" Height="30"/></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" IsVisible="{Binding IsVisibleAdmin}">
+                        <TextBox Margin="20" 
+                            Width="150"
+                            HorizontalAlignment="Center" 
+                            Watermark="Song Name" 
+                            Text="{Binding EntrySongName}"/>
+                        <TextBox Margin="20" 
+                            Width="150"
+                            HorizontalAlignment="Center" 
+                            Watermark="Song duration" 
+                            Text="{Binding EntrySongDuration}"/>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Artist">
