@@ -1,9 +1,8 @@
 using System;
 using System.Reactive;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using ReactiveUI;
-using Avalonia.Markup.Xaml;
-using Avalonia.ReactiveUI;
 using System.Collections.Generic;
 using Avalonia.Collections;
 using Avalonia.Controls;
@@ -16,18 +15,24 @@ public class ShopViewModel : ViewModelBase
     public List<int> Albums = new List<int>();
     public ConnectDB connect = default!;
     public StyleManager styles = default!;
-    public ShopViewModel(ConnectDB connect, string username, StyleManager.Theme style, Window view)
+    public ShopViewModel(ConnectDB connect, string username, StyleManager.Theme style, Window view, ApplicationWindowViewModel app)
     { 
         var styleinshop = new StyleManager(view);
         styleinshop.UseTheme(style);
 
         this.connect = connect;
-        connect.getAlbumID(connect.getId(username),ref Albums);
+        connect.getAllAlbumsID(ref Albums);
         foreach (int Album_id in Albums)
         {
             SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), "3:27", connect.getAlbumCover(Album_id)));
         }
         Test = "Add album";
+
+        BuyAlbum = ReactiveCommand.Create(() =>
+        {
+            connect.assignAlbum(Albums[SelectedAlbum], connect.getId(username));
+            app.populateAlbums(connect);
+        });
     }
     // binding button
     private String test = "Add Album";
@@ -36,4 +41,14 @@ public class ShopViewModel : ViewModelBase
         get => test;
         set => this.RaiseAndSetIfChanged(ref test, value);
     }
+    int selectedalbum = default!;
+    public int SelectedAlbum
+    {
+        get => selectedalbum;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref selectedalbum, value);
+        }
+    }
+    public ICommand BuyAlbum {get; } = default!;
 }

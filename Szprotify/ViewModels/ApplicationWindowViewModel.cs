@@ -102,7 +102,7 @@ public class ApplicationWindowViewModel : ViewModelBase
             CoverPathAsync = openFileDialog.ShowAsync(ApplicationWindow);
             var UwU = CoverPathAsync.Result;
             CoverPath = Path.GetFileName(UwU[0]);
-            var destinationPath = Path.Combine(@"../DataBase", Path.GetFileName(UwU[0]));//@"Assets/pl_pl.txt"
+            var destinationPath = Path.Combine(@"../DataBase", Path.GetFileName(UwU[0]));
             File.Copy(UwU[0],destinationPath);
         });  
         Artists = ArtistsName; 
@@ -133,7 +133,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             var dialog = new Views.ShopView();
             var CurrentTheme = styles.CurrentTheme;
-            var viewModel = new ShopViewModel(connect, user.Username, CurrentTheme, dialog);
+            var viewModel = new ShopViewModel(connect, user.Username, CurrentTheme, dialog, this);
             dialog.DataContext = viewModel;
             dialog.ShowDialog(ApplicationWindow);
         });
@@ -220,14 +220,14 @@ public class ApplicationWindowViewModel : ViewModelBase
     public void populateAlbums(ConnectDB connect)
     {
         Albums.Clear();
-        connect.getAllAlbumsID(ref Albums);
-        /*if(user.Role == "Admin")
+        //connect.getAllAlbumsID(ref Albums);
+        if(connect.getRole(username) == "Admin")
         {
             connect.getAllAlbumsID(ref Albums);
         }else
         {
             connect.getAlbumID(connect.getId(username),ref Albums);
-        }*/
+        }
         if(Albums.Count != 0)
         {
             foreach (int Album_id in Albums)
