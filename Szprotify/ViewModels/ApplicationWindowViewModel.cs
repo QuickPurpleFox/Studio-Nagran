@@ -352,7 +352,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             foreach (int Album_id in Albums)
             {
-                SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist(Album_id), connect.getSongCount(Album_id), connect.getAlbumCover(Album_id)));
+                SearchResults.Add(new AlbumViewModel(connect.getAlbumName(Album_id), connect.getAlbumArtist_id(Album_id), connect.getSongCount(Album_id), connect.getAlbumCover(Album_id)));
             }
         }
     }
