@@ -459,6 +459,25 @@ public class ConnectDB
         }
     }
 
+    public void getAllUsersName(ref List<String> users)
+    {
+        try
+        {
+            string SqlUsersString = "SELECT Username FROM Users";
+            SQLiteCommand UserCommand = new SQLiteCommand(SqlUsersString, connection);
+
+            var reader = UserCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                users.Add((String)reader.GetString(0));
+            }
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
+
     public bool addAlbum(string EntryCoverPath, string EntryAlbumName, string EntrySelectedArtist)
     {
         try
@@ -554,6 +573,41 @@ public class ConnectDB
         {
             Console.WriteLine(e.ToString());
             return false;
+        }
+    }
+
+    public void changeRole(string username, string role)
+    {
+        try
+        {
+            string SqlChange = "UPDATE Users SET Role = @role WHERE Username = @username";
+            SQLiteCommand changecommand = new SQLiteCommand(SqlChange, connection);
+
+            changecommand.Parameters.AddWithValue("@username", username);
+            changecommand.Parameters.AddWithValue("@role", role);
+
+            changecommand.ExecuteScalar();
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
+
+    public int countAdmins()
+    {
+        try
+        {
+            string SqlAdminString = "SELECT COUNT(*) FROM Users WHERE Role = 'Admin'";
+            SQLiteCommand AdminCommand = new SQLiteCommand(SqlAdminString, connection);
+
+            int AdminCount = Convert.ToInt32(AdminCommand.ExecuteScalar());
+            return AdminCount;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return 0;
         }
     }
 }

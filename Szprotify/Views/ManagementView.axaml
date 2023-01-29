@@ -33,16 +33,19 @@
                     <StackPanel>
                         <Button Command="{Binding ChangeRole}">Change user role</Button>
                         <Button Command="{Binding AdminResign}">Resign from admin</Button>
+                        <TextBlock Classes="Caption" 
+                                Text="{Binding errorMessage}" 
+                                TextAlignment="Center"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Border Height="300" Classes="Card">
-                    <!--<ListBox Items="{Binding SearchResults}" 
+                    <ListBox Items="{Binding SearchResults}" 
                             SelectionMode="Single" 
-                            SelectedIndex="{Binding SelectedAlbum}"
+                            SelectedIndex="{Binding SelectedUser}"
                             Background="Transparent" 
-                            Margin="0 20"/>-->
+                            Margin="0 20"/>
                 </Border>
             </StackPanel>
         </Grid>
