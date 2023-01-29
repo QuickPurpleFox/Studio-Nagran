@@ -15,6 +15,7 @@ public class ApplicationWindowViewModel : ViewModelBase
 {
     public AvaloniaList<AlbumViewModel> SearchResults { get; } = new();
     public AvaloniaList<SongViewModel> SongResults { get; } = new();
+    public AvaloniaList<ArtistViewModel> ArtistResults { get; } = new();
     public UserData user = default!;
     public string[] lines = default!;
     public List<int> Albums = new List<int>();
@@ -43,6 +44,10 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             populateAlbums(connect);
             populateSongs(connect);
+        }
+        if(ArtistsName.Count != 0)
+        {
+            populateArtist(connect);
         }
 
         user = new UserData(connect.getRole(username), connect.getId(username), username); 
@@ -143,6 +148,20 @@ public class ApplicationWindowViewModel : ViewModelBase
             populateSongs(connect);
         });
 
+        AddArtist = ReactiveCommand.Create(() =>
+        {
+            connect.addSong(Albums[SelectedAlbum], EntrySongName, EntrySongDuration);
+            SongResults.Clear();
+            populateSongs(connect);
+        });
+
+        DeleteArtist = ReactiveCommand.Create(() =>
+        {
+            connect.deleteSong(Songs[SelectedSong]);
+            SongResults.Clear();
+            populateSongs(connect);
+        });
+
 
         ShowDialog = new Interaction<ShopViewModel, AlbumViewModel?>();
         ShopButton = ReactiveCommand.Create(() =>
@@ -173,6 +192,8 @@ public class ApplicationWindowViewModel : ViewModelBase
          
     }
     // binding button
+    public ICommand DeleteArtist {get; }
+    public ICommand AddArtist {get; }
     public ICommand ProfileButton {get; }
     public ICommand ManagementButton {get; }
     private string entryalbumname = string.Empty;
@@ -298,6 +319,19 @@ public class ApplicationWindowViewModel : ViewModelBase
             foreach (int Song_id in Songs)
             {
                 SongResults.Add(new SongViewModel(connect.getSongName(Song_id), connect.getSongAlbum(Song_id), connect.getSongDuration(Song_id)));
+            }
+        }
+    }
+
+    public void populateArtist(ConnectDB connect)
+    {
+        ArtistsName.Clear();
+        connect.getArtistName(ref ArtistsName);
+        if(ArtistsName.Count != 0)
+        {
+            foreach (String Artist_name in ArtistsName)
+            {
+                ArtistResults.Add(new ArtistViewModel(Artist_name));
             }
         }
     }

@@ -325,7 +325,7 @@ public class ConnectDB
     }
 
 //SELECT COUNT(*) FROM Songs WHERE Album_ID = @id
-    public string getAlbumArtist(int albumartist_id)
+    public string getAlbumArtist(int albumartist_id)                                                                    //TODO coś nie tak
     {
         try
         {

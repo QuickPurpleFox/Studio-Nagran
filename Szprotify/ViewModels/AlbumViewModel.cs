@@ -11,7 +11,7 @@ public class AlbumViewModel : ViewModelBase
     public AlbumViewModel(String Title, String Album, int count, String cover)
     {
         DataTitle = Title;
-        DataAlbum = Album;
+        dataalbum = Album;
         SongsCount = count;
         if (File.Exists(@"../DataBase/"+cover)) 
         {

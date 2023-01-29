@@ -175,9 +175,48 @@
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Artist">
-                        <TextBlock Classes="Caption" 
-                                    Text="Hello from the second tab!"
-                                    Margin="10" />
+                        <StackPanel>
+                        <Grid Margin= "10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="1"
+                                    Classes="Caption" 
+                                    Text="Name" 
+                                    TextAlignment="Left"/>
+                        </Grid>
+                    <Border Height="1" Background="Black" />
+                    <ListBox Items="{Binding ArtistResults}"
+                            SelectionMode="Single,AlwaysSelected"
+                            SelectedIndex="{Binding SelectedArtist}"  
+                            Background="Transparent" 
+                            Margin="0 20"
+                            Height="250">
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal">
+                            <Button Background="Green" 
+                                    Width="32" 
+                                    Height="32" 
+                                    Command="{Binding AddArtist}" 
+                                    IsEnabled="{Binding EnableAddSong}"
+                                    IsVisible="{Binding IsVisibleAdmin}"><Image Source="../Assets/add.png" Width="30" Height="30"/></Button>
+                            <Button Background="Red" 
+                                    Width="32" 
+                                    Height="32" 
+                                    Command="{Binding DeleteArtist}"
+                                    IsVisible="{Binding IsVisibleAdmin}"><Image Source="../Assets/delete.png" Width="30" Height="30"/></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" IsVisible="{Binding IsVisibleAdmin}">
+                        <TextBox Margin="20" 
+                            Width="150"
+                            HorizontalAlignment="Center" 
+                            Watermark="Artist Name" 
+                            Text="{Binding EntryArtistName}"/>
+                        </StackPanel>
+                    </StackPanel>
                 </TabItem>
                 </TabControl>
                 </Border>
