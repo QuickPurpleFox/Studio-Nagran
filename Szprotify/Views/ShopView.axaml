@@ -32,6 +32,7 @@
                 <Border Height="300" Classes="Card">
                     <StackPanel>
                         <Button Command="{Binding BuyAlbum}">Buy Album</Button>
+                        <Button Command="{Binding Invoice}">See invoice</Button>
                     </StackPanel>
                 </Border>
             </StackPanel>

@@ -69,7 +69,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         PolishLaunguage = ReactiveCommand.Create(() =>
         {
             PrintUsername = "Użytkownik: "+user.Username;
-            lines = System.IO.File.ReadAllLines(@"Assets/pl_pl.txt");
+            lines = System.IO.File.ReadAllLines(Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/") +"Assets/pl_pl.txt");
             //change language to polish
             SwitchThemeButton = lines[0];
             SwitchLanguageButton = lines[1];
@@ -84,7 +84,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         EnglishLaunguage = ReactiveCommand.Create(() =>
         {
             PrintUsername = "User: "+user.Username;
-            lines = System.IO.File.ReadAllLines(@"Assets/en_us.txt");
+            lines = System.IO.File.ReadAllLines(Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/") +"Assets/en_us.txt");
             //change language to English
             SwitchThemeButton = lines[0];
             SwitchLanguageButton = lines[1];
@@ -102,12 +102,12 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a file";
-            openFileDialog.InitialFileName = "C:\\";
+            openFileDialog.InitialFileName = AppContext.BaseDirectory;
             openFileDialog.Filters.Add(new FileDialogFilter { Name = "jpeg files", Extensions = {"jpg"}});
             CoverPathAsync = openFileDialog.ShowAsync(ApplicationWindow);
             var UwU = CoverPathAsync.Result;
             CoverPath = Path.GetFileName(UwU[0]);
-            var destinationPath = Path.Combine(@"../DataBase", Path.GetFileName(UwU[0]));
+            var destinationPath = Path.Combine(Path.Combine(AppContext.BaseDirectory + "/../../../../DataBase"), Path.GetFileName(UwU[0]));
             File.Copy(UwU[0],destinationPath);
         });  
         Artists = ArtistsName; 
@@ -116,7 +116,7 @@ public class ApplicationWindowViewModel : ViewModelBase
         {
             if (CoverPath == default!)
             {
-                CoverPath = "STOCK_EMPTY_COVER.jpg";
+                CoverPath = Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Assets") + "STOCK_EMPTY_COVER.jpg";
             }
             connect.addAlbum(CoverPath, EntryAlbumName, SelectedArtist);
             //connect.assignAlbum(EntryAlbumName, connect.getId(username));

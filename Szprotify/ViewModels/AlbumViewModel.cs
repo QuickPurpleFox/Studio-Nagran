@@ -11,15 +11,15 @@ public class AlbumViewModel : ViewModelBase
     public AlbumViewModel(String Title, String Album, int count, String cover)
     {
         DataTitle = Title;
-        dataalbum = Album;
+        DataAlbum = Album;
         SongsCount = count;
-        if (File.Exists(@"../DataBase/"+cover)) 
+        if (File.Exists(Path.Combine(AppContext.BaseDirectory + "/../../../../DataBase/"+cover))) 
         {
-            SourceCover = new Bitmap(File.OpenRead(@"../DataBase/"+cover));
+            SourceCover = new Bitmap(File.OpenRead(Path.Combine(AppContext.BaseDirectory + "/../../../../DataBase/"+cover)));
         }
         else
         {
-            SourceCover =new Bitmap(File.OpenRead(@"Assets/STOCK_EMPTY_COVER.jpg"));
+            SourceCover =new Bitmap(File.OpenRead(Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Assets/STOCK_EMPTY_COVER.jpg")));
         }
     }
     // binding button

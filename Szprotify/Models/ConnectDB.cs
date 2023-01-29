@@ -1,8 +1,9 @@
 using System;
+using System.IO;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Data;
+using System.Runtime.Loader;
 using System.Collections.Generic;
 
 /*
@@ -23,7 +24,7 @@ public class ConnectDB
         {
             //Build connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "../DataBase/SzprotifyDB.db";
+            builder.DataSource = Path.Combine(AppContext.BaseDirectory + "/../../../../DataBase/SzprotifyDB.db");
 
             // Connect to SQL
             Console.Write("Connecting to SQL Server ... ");

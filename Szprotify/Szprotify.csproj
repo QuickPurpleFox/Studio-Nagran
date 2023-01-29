@@ -26,6 +26,7 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
     <PackageReference Include="Citrus.Avalonia" Version="1.6.1" />
     <PackageReference Include="dapper" Version="2.0.123" />
+    <PackageReference Include="QuestPDF" Version="2022.12.1" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
