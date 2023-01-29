@@ -153,9 +153,19 @@ public class ApplicationWindowViewModel : ViewModelBase
             dialog.DataContext = viewModel;
             dialog.ShowDialog(ApplicationWindow);
         });
+
+        ManagementButton = ReactiveCommand.Create(() =>
+        {
+            var dialog = new Views.ManagementView();
+            var CurrentTheme = styles.CurrentTheme;
+            var viewModel = new ManagementModel(connect, user.Username, CurrentTheme, dialog, this);
+            dialog.DataContext = viewModel;
+            dialog.ShowDialog(ApplicationWindow);
+        });
          
     }
     // binding button
+    public ICommand ManagementButton {get; }
     private string entryalbumname = string.Empty;
     private string entrysongname = string.Empty;
     private string entrysongduration = string.Empty;

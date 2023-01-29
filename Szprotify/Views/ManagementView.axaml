@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Szprotify.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="370"
+        x:Class="Szprotify.Views.ManagementView"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Shop"
+        Width="650"
+        Height="400"
+        CanResize="false"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterOwner" >
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+        <TextBlock Classes="Caption" 
+                    Text="Admin panel" />
+        </Menu>
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="215" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Border Height="300" Classes="Card">
+                    <StackPanel>
+                        <Button Command="{Binding ChangeRole}">Change user role</Button>
+                        <Button Command="{Binding AdminResign}">Resign from admin</Button>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Border Height="300" Classes="Card">
+                    <!--<ListBox Items="{Binding SearchResults}" 
+                            SelectionMode="Single" 
+                            SelectedIndex="{Binding SelectedAlbum}"
+                            Background="Transparent" 
+                            Margin="0 20"/>-->
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
