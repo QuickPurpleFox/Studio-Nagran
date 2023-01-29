@@ -1,7 +1,4 @@
 using System;
-using static System.Uri;
-using System.Reactive;
-using System.Collections.ObjectModel;
 using ReactiveUI;
 using Avalonia.Media.Imaging;
 using System.IO;
@@ -16,7 +13,14 @@ public class AlbumViewModel : ViewModelBase
         DataTitle = Title;
         DataAlbum = Album;
         SongsCount = count;
-        SourceCover = new Bitmap(File.OpenRead(@"../DataBase/"+cover));
+        if (File.Exists(@"../DataBase/"+cover)) 
+        {
+            SourceCover = new Bitmap(File.OpenRead(@"../DataBase/"+cover));
+        }
+        else
+        {
+            SourceCover =new Bitmap(File.OpenRead(@"Assets/STOCK_EMPTY_COVER.jpg"));
+        }
     }
     // binding button
     private String datatitle = String.Empty;

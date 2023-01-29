@@ -162,9 +162,14 @@ public class ApplicationWindowViewModel : ViewModelBase
             dialog.DataContext = viewModel;
             dialog.ShowDialog(ApplicationWindow);
         });
+
+        ProfileButton = ReactiveCommand.Create(()=>{
+            
+        });
          
     }
     // binding button
+    public ICommand ProfileButton {get; }
     public ICommand ManagementButton {get; }
     private string entryalbumname = string.Empty;
     private string entrysongname = string.Empty;
