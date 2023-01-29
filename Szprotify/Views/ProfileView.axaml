@@ -7,7 +7,7 @@
         x:Class="Szprotify.Views.ProfileView"
         Icon="/Assets/avalonia-logo.ico"
         Title="Shop"
-        Width="650"
+        Width="350"
         Height="400"
         CanResize="false"
         TransparencyLevelHint="AcrylicBlur"
@@ -28,10 +28,41 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Border Height="300" Classes="Card">
+                <Border Height="330" Classes="Card">
                     <StackPanel>
-                        <Button Command="{Binding SaveData}"
-                                Width="150">Save data</Button>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Classes="Caption" 
+                             Text="Street"
+                             VerticalAlignment="Center" />
+                        <TextBox Margin="20" 
+                             Width="180"
+                             HorizontalAlignment="Center"
+                             Watermark="Street"  
+                             Text="{Binding EntryStreet}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Classes="Caption" 
+                             Text="City"
+                             VerticalAlignment="Center" />
+                        <TextBox Margin="20" 
+                             Width="180"
+                             HorizontalAlignment="Center"
+                             Watermark="City"  
+                             Text="{Binding EntryCity}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Classes="Caption" 
+                             Text="Zip-code"
+                             VerticalAlignment="Center" />
+                        <TextBox Margin="20" 
+                             Width="180"
+                             HorizontalAlignment="Center"
+                             Watermark="Zip-code"  
+                             Text="{Binding EntryZipcode}"/>
+                    </StackPanel>
+                    <Button Command="{Binding SaveData}"
+                            Width="150"
+                            HorizontalAlignment="Left">Save data</Button>
                     </StackPanel>
                 </Border>
             </StackPanel>

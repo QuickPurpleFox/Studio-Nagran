@@ -610,4 +610,78 @@ public class ConnectDB
             return 0;
         }
     }
+
+    public string getStreet(String username)
+    {
+        try
+        {
+            string SqlUserStreetString = "SELECT Street FROM Users WHERE Username = @id";
+            SQLiteCommand UserStreetCommand = new SQLiteCommand(SqlUserStreetString, connection);
+            UserStreetCommand.Parameters.AddWithValue("@id", username);
+
+            String Street = Convert.ToString(UserStreetCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return Street;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+
+    public string getCity(String username)
+    {
+        try
+        {
+            string SqlUserStreetString = "SELECT City FROM Users WHERE Username = @id";
+            SQLiteCommand UserStreetCommand = new SQLiteCommand(SqlUserStreetString, connection);
+            UserStreetCommand.Parameters.AddWithValue("@id", username);
+
+            String Street = Convert.ToString(UserStreetCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return Street;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+
+    public string getZipcode(String username)
+    {
+        try
+        {
+            string SqlUserStreetString = "SELECT Zipcode FROM Users WHERE Username = @id";
+            SQLiteCommand UserStreetCommand = new SQLiteCommand(SqlUserStreetString, connection);
+            UserStreetCommand.Parameters.AddWithValue("@id", username);
+
+            String Street = Convert.ToString(UserStreetCommand.ExecuteScalar()) ?? throw new ArgumentException();;
+            return Street;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return "NoData";
+        }
+    }
+
+    public void saveData(string username, string EntryStreet, string EntryCity, string EntryZipcode)
+    {
+        try
+        {
+            string SqlChange = "UPDATE users SET Street = @street, City = @city, Zipcode = @zipcode WHERE Username = @username";
+            SQLiteCommand changecommand = new SQLiteCommand(SqlChange, connection);
+
+            changecommand.Parameters.AddWithValue("@username", username);
+            changecommand.Parameters.AddWithValue("@street", EntryStreet);
+            changecommand.Parameters.AddWithValue("@city", EntryCity);
+            changecommand.Parameters.AddWithValue("@zipcode", EntryZipcode);
+
+            changecommand.ExecuteScalar();
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
 }
