@@ -150,16 +150,16 @@ public class ApplicationWindowViewModel : ViewModelBase
 
         AddArtist = ReactiveCommand.Create(() =>
         {
-            connect.addSong(Albums[SelectedAlbum], EntrySongName, EntrySongDuration);
-            SongResults.Clear();
-            populateSongs(connect);
+            connect.addArtist(EntryArtistName);
+            ArtistResults.Clear();
+            populateArtist(connect);
         });
 
         DeleteArtist = ReactiveCommand.Create(() =>
         {
-            connect.deleteSong(Songs[SelectedSong]);
-            SongResults.Clear();
-            populateSongs(connect);
+            connect.deleteArtist(ArtistsName[SelectedArtistList]);
+            ArtistResults.Clear();
+            populateArtist(connect);
         });
 
 
@@ -371,6 +371,42 @@ public class ApplicationWindowViewModel : ViewModelBase
         set
         {
             this.RaiseAndSetIfChanged(ref selectedartist, value);
+        }
+    }
+
+    private String entryartistname = String.Empty;
+    public String EntryArtistName
+    {
+        get => entryartistname;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref entryartistname, value);
+            if(EntryArtistName.Length > 4)
+            {
+                EnableAddArtist = true;
+            }
+            else
+            {
+                EnableAddArtist = false;
+            }
+        }
+    }
+
+    private bool enableaddartist = false;
+    public bool EnableAddArtist
+    {
+        get => enableaddartist;
+        set => this.RaiseAndSetIfChanged(ref enableaddartist, value);
+        
+    }
+
+    private int selectedartistlist = default!;
+    public int SelectedArtistList
+    {
+        get => selectedartistlist;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref selectedartistlist, value);
         }
     }
 

@@ -684,4 +684,42 @@ public class ConnectDB
             Console.WriteLine(e.ToString());
         }
     }
+
+    public bool addArtist(string name)
+    {
+        try
+        {
+            string SqlRegister = "INSERT INTO Authors (Stage_name) VALUES (@name)";
+            SQLiteCommand registercommand = new SQLiteCommand(SqlRegister, connection);
+
+            registercommand.Parameters.AddWithValue("@name", name);
+
+            registercommand.ExecuteScalar();
+            return true;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
+    }
+
+    public bool deleteArtist(string name)
+    {
+        try
+        {
+            string SqldeleteAlbum = "DELETE FROM Authors WHERE Stage_name = @name";
+            SQLiteCommand Deletecommand = new SQLiteCommand(SqldeleteAlbum, connection);
+
+            Deletecommand.Parameters.AddWithValue("@name", name);
+
+            Deletecommand.ExecuteScalar();
+            return true;
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+            return false;
+        }
+    }
 }

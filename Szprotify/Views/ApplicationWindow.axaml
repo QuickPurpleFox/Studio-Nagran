@@ -191,7 +191,7 @@
                     <Border Height="1" Background="Black" />
                     <ListBox Items="{Binding ArtistResults}"
                             SelectionMode="Single,AlwaysSelected"
-                            SelectedIndex="{Binding SelectedArtist}"  
+                            SelectedIndex="{Binding SelectedArtistList}"  
                             Background="Transparent" 
                             Margin="0 20"
                             Height="250">
@@ -201,7 +201,7 @@
                                     Width="32" 
                                     Height="32" 
                                     Command="{Binding AddArtist}" 
-                                    IsEnabled="{Binding EnableAddSong}"
+                                    IsEnabled="{Binding EnableAddArtist}"
                                     IsVisible="{Binding IsVisibleAdmin}"><Image Source="../Assets/add.png" Width="30" Height="30"/></Button>
                             <Button Background="Red" 
                                     Width="32" 
