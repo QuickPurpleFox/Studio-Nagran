@@ -164,7 +164,11 @@ public class ApplicationWindowViewModel : ViewModelBase
         });
 
         ProfileButton = ReactiveCommand.Create(()=>{
-            
+            var dialog = new Views.ProfileView();
+            var CurrentTheme = styles.CurrentTheme;
+            var viewModel = new ProfileViewModel(connect, user.Username, CurrentTheme, dialog, this);
+            dialog.DataContext = viewModel;
+            dialog.ShowDialog(ApplicationWindow);
         });
          
     }
