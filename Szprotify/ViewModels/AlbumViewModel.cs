@@ -12,6 +12,10 @@ public class AlbumViewModel : ViewModelBase
     {
         DataTitle = Title;
         DataAlbum = Album;
+        if(DataAlbum == String.Empty)
+        {
+            DataAlbum = "No Data";
+        }
         SongsCount = count;
         if (File.Exists(Path.Combine(AppContext.BaseDirectory + "/../../../../DataBase/"+cover))) 
         {

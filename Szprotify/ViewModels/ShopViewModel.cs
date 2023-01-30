@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Avalonia.Collections;
 using Avalonia.Controls;
 using System.IO;
+using Avalonia.Media.Imaging;
 
 namespace Szprotify.ViewModels;
 
@@ -45,7 +46,7 @@ public class ShopViewModel : ViewModelBase
                 page.DefaultTextStyle(x => x.FontSize(20));
         
                 page.Header()
-                .Text("Hello PDF!")
+                .Text("Invoice")
                 .SemiBold().FontSize(36).FontColor(Colors.Blue.Medium);
         
                 page.Content()
@@ -54,8 +55,13 @@ public class ShopViewModel : ViewModelBase
                 {
                     x.Spacing(20);
                 
-                    x.Item().Text(Placeholders.LoremIpsum());
-                    x.Item().Image(Placeholders.Image(200, 100));
+                    x.Item().Text(connect.getStreet(username));
+                    x.Item().Text(connect.getCity(username));
+                    x.Item().Text(connect.getZipcode(username));
+                    //x.Item().Text(connect.getAlbumName(Albums[SelectedAlbum]));
+                    byte[] imageData = File.ReadAllBytes(Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Assets/BaseLogo.png"));
+                    x.Item().Image(imageData);
+                    
                 });
         
                 page.Footer()
@@ -66,14 +72,14 @@ public class ShopViewModel : ViewModelBase
                     x.CurrentPageNumber();
                 });
             });
-        }).GeneratePdf("hello.pdf");
-        Process.Start(Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/") +"hello.pdf");
+        }).GeneratePdf("Invoice.pdf");
+        Process.Start(Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Invoice.pdf"));
         });
 
         Invoice = ReactiveCommand.Create(()=>
         {
             Process p = new Process();
-            p.StartInfo.FileName = @"D:\Studio_Nagran\Studio-Nagran\Szprotify\hello.pdf";
+            p.StartInfo.FileName = Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Invoice.pdf");
             p.Start();
         });
     }
