@@ -73,14 +73,12 @@ public class ShopViewModel : ViewModelBase
                 });
             });
         }).GeneratePdf("Invoice.pdf");
-        Process.Start(Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Invoice.pdf"));
+        Process.Start("open", Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Invoice.pdf"));
         });
 
         Invoice = ReactiveCommand.Create(()=>
         {
-            Process p = new Process();
-            p.StartInfo.FileName = Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Invoice.pdf");
-            p.Start();
+            Process.Start("open", Path.Combine(AppContext.BaseDirectory + "/../../../../Szprotify/Invoice.pdf"));
         });
     }
     // binding button
