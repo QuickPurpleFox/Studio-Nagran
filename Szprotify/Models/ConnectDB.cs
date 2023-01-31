@@ -723,4 +723,22 @@ public class ConnectDB
             return false;
         }
     }
+
+    public void log(string text)
+    {
+        try
+        {
+            string SqlLog = "INSERT INTO Logs (Log_Content, Log_Time) VALUES (@text, @date)";
+            SQLiteCommand Logcommand = new SQLiteCommand(SqlLog, connection);
+
+            Logcommand.Parameters.AddWithValue("@text", text);
+            Logcommand.Parameters.AddWithValue("@date", DateTime.Now.ToString("MM/dd/yyyy h:mm tt"));
+
+            Logcommand.ExecuteScalar();
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
 }

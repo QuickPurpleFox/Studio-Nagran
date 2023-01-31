@@ -26,6 +26,7 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine("Password: " + EntryPassword + "]");
             if(connect.Login(EntryUsername, EntryPassword))
             {
+                connect.log("Logging [Username: " + EntryUsername + "]");
                 MethodToOpenApplication();
                 window.Close();
                 

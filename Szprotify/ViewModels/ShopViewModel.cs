@@ -34,6 +34,7 @@ public class ShopViewModel : ViewModelBase
 
         BuyAlbum = ReactiveCommand.Create(() =>
         {
+            connect.log("Buy [Username: " + username + " Album: " + Albums[SelectedAlbum] + "]");
             connect.assignAlbum(Albums[SelectedAlbum], connect.getId(username));
             app.populateAlbums(connect);
             Document.Create(container =>

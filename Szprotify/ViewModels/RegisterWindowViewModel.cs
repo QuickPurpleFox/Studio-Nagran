@@ -14,6 +14,7 @@ public class RegisterWindowViewModel : ViewModelBase
     {
         RegisterCommandView = ReactiveCommand.Create(() =>
         {
+            connect.log("Register [Username: " + EntryUsername + "]");
             Console.Write("Register [Username: " + EntryUsername + " ");
             Console.WriteLine("Password: " + EntryPassword + "]");
             connect.Register(EntryUsername, EntryPassword);
